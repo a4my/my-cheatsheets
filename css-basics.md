@@ -63,7 +63,6 @@ category: CSS
 | `:last-of-type`   |
 | `:nth-of-type(2)` |
 | `:only-of-type`   |
-| ---               |
 | `:first-child`    |
 | `:last-child`     |
 | `:nth-child(2)`   |
@@ -85,7 +84,6 @@ category: CSS
 | `text-decoration:` | `underline` `none`                   |
 | `text-align:`      | `left` `right` `center` `justify`    |
 | `text-transform:`  | `capitalize` `uppercase` `lowercase` |
-{: .-key-values}
 
 ### Example
 
@@ -126,8 +124,6 @@ text-transform: lowercase; /* hello */
 | ------------- | ------ | ------------- | --------- | --------- | --- | -------------- | ----------- | ---------- |
 | `background:` | `#ff0` | `url(bg.jpg)` | `left`    | `top`     | `/` | `100px` `auto` | `no-repeat` | `fixed;`   |
 | `background:` | `#abc` | `url(bg.png)` | `center`  | `center`  | `/` | `cover`        | `repeat-x`  | `local;`   |
-|               | color  | image         | positionX | positionY |     | size           | repeat      | attachment |
-{: .-css-breakdown}
 
 ### Multiple backgrounds
 
@@ -167,3 +163,61 @@ animation: bounce 300ms linear infinite alternate-reverse;
 animation: bounce 300ms linear 2s infinite alternate-reverse forwards normal;
 ```
 
+### Variables
+
+```scss
+:root {
+  --text-color: #30333a;
+}
+```
+
+```scss
+body {
+  background: var(--text-color);
+  background: color(var(--text-color) shade(30%));
+}
+```
+
+### Colors
+
+```scss
+a {
+  /* Adjustments */
+  color: color(red alpha(-10%));
+  color: color(red tint(-10%));    /* lighten */
+  color: color(red shade(-10%));   /* darken */
+
+  /* Absolute */
+  color: color(red alpha(50%));
+  color: color(red hue(225));
+  color: color(red saturation(100%));
+  color: color(red lightness(50%));
+
+  color: gray(33);       /* rgb(33, 33, 33) */
+  color: gray(33%);      /* rgb(84, 84, 84) */
+  color: gray(33%, 50%); /* rgba(84, 84, 84, 0.5) */
+  color: #0000ff80;      /* rgba(0, 0, 255, 0.5) */
+
+  color: hwb(90, 0%, 0%, 0.5);     /* like hsl() but easier for humans */
+  color: hsl(90deg 90% 70%);       /* hsl(180, 90%, 70%) -- supports deg */
+  color: hsl(90deg 90% 70% / 30%); /* hsla(180, 90%, 70%, 0.3) */
+  color: rgb(30 60 90 / 30%);      /* rgba(30, 60, 90, 0.3) */
+}
+```
+
+Also see [colorme.io](http://colorme.io/).
+
+### Mixins
+
+```scss
+:root {
+  --centered: {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  };
+}
+
+.centered {
+  @apply --centered;
+}
