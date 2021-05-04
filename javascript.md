@@ -90,3 +90,49 @@ calcAge(years) // will NOT work and will throw an error
 // BUT
 calcAge(years[1]) // will work
 ```
+
+## Array Methods
+
+ADD ELEMENTS
+
+• PUSH
+```js
+friends.push('Jay')
+console.log(friends) // will return 'Mike', 'Steven', 'John', 'Jay'
+
+```
+
+• UNSHIFT
+```js
+friends.unshift('Peter')
+console.log(friends) // will return 'Peter', 'Mike', 'Steven', 'John', 'Jay'
+
+```
+
+REMOVE ELEMENTS
+
+• POP
+```js
+friends.pop()
+console.log(friends) // will return 'Peter', 'Mike', 'Steven', 'John'
+
+```
+
+• SHIFT
+```js
+friends.shift()
+console.log(friends) // will return 'Mike', 'Steven', 'John', 
+
+```
+
+EXTRA METHODS
+
+```js
+friends.indexOf('Steven')
+console.log(friends) // will return 1 
+
+console.log(friends.includes('Bob')) // will return False
+console.log(friends.includes('Mike')) // will return True
+
+
+```
