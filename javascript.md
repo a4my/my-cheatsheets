@@ -41,6 +41,15 @@ const age2 = calcAge2(1986)
 ```
 You can call a function declaration before you declare it but you can't call a function expression before declaring it.
 
+• Arrow functions:
+
+```js
+const calcAge3 = birthyear => 2021 - birthyear
+  
+const age3 = calcAge3(1986)
+```
+
+
 ## Template literals (backticks)
 
 ```js
@@ -52,3 +61,32 @@ function fruitProcessor(apples, oranges) {
 fruitProcessor(5, 0)
 ```
 Template literals are string literals allowing embedded expressions
+
+
+## Arrays
+
+2 ways to create arrays:
+
+```js
+const friends = ['Mike', 'Steven', 'John']
+
+OR
+
+const friends = new Array('Mike', 'Steven', 'John')
+
+```
+
+```js
+console.log(friends[1]) // will return Steven
+console.log(friends.length) // will return 3
+console.log(friends.length - 1) // will return John
+friends[2] = 'Jay'
+console.log(friends) // will return 'Mike', 'Steven', 'Jay'
+
+friends = ['Bob', 'Alice'] // will NOT replace the first array and will throw an error
+
+const years = [1990, 1967, 2000, 2007, 2015]
+calcAge(years) // will NOT work and will throw an error
+// BUT
+calcAge(years[1]) // will work
+```
