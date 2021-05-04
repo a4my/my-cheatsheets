@@ -133,6 +133,20 @@ console.log(friends) // will return 1
 
 console.log(friends.includes('Bob')) // will return False
 console.log(friends.includes('Mike')) // will return True
+```
 
+## Objects
 
+Example:
+
+```js
+const alex = [
+  firstname: 'Alex',
+  lastName: 'Fourmy',
+  age: 2021 - 1986,
+  job: 'Web developer',
+  friends: ['John', 'Mary', 'Tim']
+]
+
+console.log(alex.lastName) // will only return Fourmy
 ```
