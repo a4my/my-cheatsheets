@@ -145,7 +145,8 @@ const alex = [
   lastName: 'Fourmy',
   age: 2021 - 1986,
   job: 'Web developer',
-  friends: ['John', 'Mary', 'Tim']
+  friends: ['John', 'Mary', 'Tim'],
+  hasDriversLicense: true
 ]
 
 console.log(alex.lastName) // will only return Fourmy
