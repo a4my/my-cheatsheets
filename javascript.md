@@ -6,7 +6,7 @@ intro: |
   A quick overview of new JavaScript features in ES2015, ES2016, ES2017, ES2018 and beyond.
 ---
 
-### BASICS
+# BASICS
 
 ## Functions
 
@@ -151,3 +151,19 @@ const alex = [
 
 console.log(alex.lastName) // will only return Fourmy
 ```
+
+## The this. operator
+
+```js
+const john = {
+  firstName: 'John',
+  lastName: 'Doe',
+  birthYear: 1986,
+  calcAge: function() {
+    this.age = 2021 - this.birthYear
+    return this.age
+  },
+}
+```
+
+# LOOPS
