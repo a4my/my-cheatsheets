@@ -167,3 +167,65 @@ const john = {
 ```
 
 # LOOPS
+
+## For Loop
+
+Instead of doing this:
+
+```js
+console.log('Lifting weights repetition 1')
+console.log('Lifting weights repetition 2')
+console.log('Lifting weights repetition 3')
+console.log('Lifting weights repetition 4')
+console.log('Lifting weights repetition 5')
+console.log('etc...')
+```
+
+A for loop will keep your code 'DRY'
+
+```js
+for(let rep = 1; rep <= 10; rep++) {
+  console.log(`Liftin weights repetition ${rep}`)
+}
+```
+
+Other examples:
+
+```js
+//ex1
+const jonasArray = [
+  'Jonas',
+  'Schmedtmann',
+  2021 -1986,
+  'teacher',
+  ['Michael', 'John', 'Mikey']
+]
+
+for (let i = 0; i < jonasArray.length ; i++) {
+  console.log(jonasArray[i], typeOf jonasArray[i])
+}
+
+// ex2
+const years = [1991, 2007, 1969, 2020]
+const ages = []
+
+for(let i = 0; i < years.length; i++) {
+  ages.push(2021 - years[i]) // will return an array with ages for all 4 values of the years array
+}
+```
+
+## Looping backwards
+
+```js
+const jonas = [
+  'Jonas',
+  'Schmedtmann',
+  2021 -1986,
+  'teacher',
+  ['Michael', 'John', 'Mikey']
+]
+
+for (let i = jonas.length - 1; i >= 0  ; i--) {
+  console.log(jonas[i])
+}
+```
