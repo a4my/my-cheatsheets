@@ -135,6 +135,20 @@ console.log(friends.includes('Bob')) // will return False
 console.log(friends.includes('Mike')) // will return True
 ```
 
+## Random numbers
+
+```js
+Math.random() // will create a random DECIMAL number between 0 and 1
+Math.trunc() // will remove the decimals
+```
+
+Example with a dice:
+```js
+let dice = Math.trunc(Math.random() * 6) + 1
+console.log(dice)
+```
+
+
 ## Objects
 
 Example:
@@ -227,5 +241,48 @@ const jonas = [
 
 for (let i = jonas.length - 1; i >= 0  ; i--) {
   console.log(jonas[i])
+}
+```
+
+## Looping inside a loop
+
+```js
+for (let exercise = 1; exercise < 4  ; exercise++) {
+  console.log(`----Starting exercise ${exercise}`)
+
+  for(let rep = 1; rep < 6; rep++) {
+    console.log(`Exercise: ${exercise}: Lifting weight repetition ${rep}`)
+  }
+}
+```
+
+outcome:
+----Starting exercise 1
+Exercise 1: Lifting weight repetition 1
+Exercise 1: Lifting weight repetition 2
+Exercise 1: Lifting weight repetition 3
+Exercise 1: Lifting weight repetition 4
+Exercise 1: Lifting weight repetition 5
+----Starting exercise 2
+Exercise 1: Lifting weight repetition 1
+Exercise 1: Lifting weight repetition 2
+Exercise 1: Lifting weight repetition 3
+Exercise 1: Lifting weight repetition 4
+Exercise 1: Lifting weight repetition 5
+----Starting exercise 3
+Exercise 1: Lifting weight repetition 1
+Exercise 1: Lifting weight repetition 2
+Exercise 1: Lifting weight repetition 3
+Exercise 1: Lifting weight repetition 4
+Exercise 1: Lifting weight repetition 5
+
+
+## While Loop
+
+```js
+let rep = 1;
+while(rep <= 10) {
+ console.log(`Lifting wheight repetition ${rep}`)
+ rep++
 }
 ```
