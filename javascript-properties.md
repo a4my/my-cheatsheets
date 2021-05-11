@@ -96,5 +96,7 @@ const openModal = function () {
 const closeModal = function () {
   modal.classList.add("hidden");
   overlay.classList.add("hidden");
+
+  player0El.classList.toggle("player--active");
 };
 ```
