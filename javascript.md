@@ -11,11 +11,11 @@ intro: |
 ## Functions
 
 ```js
-function fn () {
-  console.log('This is a function')
+function fn() {
+  console.log("This is a function");
 }
 
-fn() //This is called calling, running, executing or invoking a function
+fn(); //This is called calling, running, executing or invoking a function
 ```
 
 ## Functions declarations VS Expressions
@@ -23,72 +23,71 @@ fn() //This is called calling, running, executing or invoking a function
 • Function declaration:
 
 ```js
-function calcAge1 (birthyear) {
-  return 2021 - birthyear
+function calcAge1(birthyear) {
+  return 2021 - birthyear;
 }
 
-const age1 = calcAge1(1986)
+const age1 = calcAge1(1986);
 ```
 
 • Function expression (or anonymous function):
 
 ```js
 const calcAge2 = function (birthyear) {
-  return 2021 - birthyear
-}
+  return 2021 - birthyear;
+};
 
-const age2 = calcAge2(1986)
+const age2 = calcAge2(1986);
 ```
+
 You can call a function declaration before you declare it but you can't call a function expression before declaring it.
 
 • Arrow functions:
 
 ```js
-const calcAge3 = birthyear => 2021 - birthyear
-  
-const age3 = calcAge3(1986)
-```
+const calcAge3 = (birthyear) => 2021 - birthyear;
 
+const age3 = calcAge3(1986);
+```
 
 ## Template literals (backticks)
 
 ```js
 function fruitProcessor(apples, oranges) {
-  const juice = `Juice with ${apples} apples and ${oranges} oranges`
-  console.log(juice)
+  const juice = `Juice with ${apples} apples and ${oranges} oranges`;
+  console.log(juice);
 }
 
-fruitProcessor(5, 0)
+fruitProcessor(5, 0);
 ```
-Template literals are string literals allowing embedded expressions
 
+Template literals are string literals allowing embedded expressions
 
 ## Arrays
 
 2 ways to create arrays:
 
 ```js
-const friends = ['Mike', 'Steven', 'John']
+const friends = ["Mike", "Steven", "John"];
 
-OR
+OR;
 
-const friends = new Array('Mike', 'Steven', 'John')
-
+const friends = new Array("Mike", "Steven", "John");
 ```
 
 ```js
-console.log(friends[1]) // will return Steven
-console.log(friends.length) // will return 3
-console.log(friends.length - 1) // will return John
-friends[2] = 'Jay'
-console.log(friends) // will return 'Mike', 'Steven', 'Jay'
+console.log(friends[1]); // will return Steven
+console.log(friends.length); // will return 3
+console.log(friends.length - 1); // will return John
+friends[2] = "Jay";
+console.log(friends); // will return 'Mike', 'Steven', 'Jay'
 
-friends = ['Bob', 'Alice'] // will NOT replace the first array and will throw an error
+friends = ["Bob", "Alice"]; // will NOT replace the first array and will throw an error
 
-const years = [1990, 1967, 2000, 2007, 2015]
-calcAge(years) // will NOT work and will throw an error
+const years = [1990, 1967, 2000, 2007, 2015];
+calcAge(years); // will NOT work and will throw an error
 // BUT
-calcAge(years[1]) // will work
+calcAge(years[1]); // will work
 ```
 
 ## Array Methods
@@ -96,58 +95,58 @@ calcAge(years[1]) // will work
 ADD ELEMENTS
 
 • PUSH
-```js
-friends.push('Jay')
-console.log(friends) // will return 'Mike', 'Steven', 'John', 'Jay'
 
+```js
+friends.push("Jay");
+console.log(friends); // will return 'Mike', 'Steven', 'John', 'Jay'
 ```
 
 • UNSHIFT
-```js
-friends.unshift('Peter')
-console.log(friends) // will return 'Peter', 'Mike', 'Steven', 'John', 'Jay'
 
+```js
+friends.unshift("Peter");
+console.log(friends); // will return 'Peter', 'Mike', 'Steven', 'John', 'Jay'
 ```
 
 REMOVE ELEMENTS
 
 • POP
-```js
-friends.pop()
-console.log(friends) // will return 'Peter', 'Mike', 'Steven', 'John'
 
+```js
+friends.pop();
+console.log(friends); // will return 'Peter', 'Mike', 'Steven', 'John'
 ```
 
 • SHIFT
-```js
-friends.shift()
-console.log(friends) // will return 'Mike', 'Steven', 'John', 
 
+```js
+friends.shift();
+console.log(friends); // will return 'Mike', 'Steven', 'John',
 ```
 
 EXTRA METHODS
 
 ```js
-friends.indexOf('Steven')
-console.log(friends) // will return 1 
+friends.indexOf("Steven");
+console.log(friends); // will return 1
 
-console.log(friends.includes('Bob')) // will return False
-console.log(friends.includes('Mike')) // will return True
+console.log(friends.includes("Bob")); // will return False
+console.log(friends.includes("Mike")); // will return True
 ```
 
 ## Random numbers
 
 ```js
-Math.random() // will create a random DECIMAL number between 0 and 1
-Math.trunc() // will remove the decimals
+Math.random(); // will create a random DECIMAL number between 0 and 1
+Math.trunc(); // will remove the decimals
 ```
 
 Example with a dice:
-```js
-let dice = Math.trunc(Math.random() * 6) + 1
-console.log(dice)
-```
 
+```js
+let dice = Math.trunc(Math.random() * 6) + 1;
+console.log(dice);
+```
 
 ## Objects
 
@@ -170,14 +169,14 @@ console.log(alex.lastName) // will only return Fourmy
 
 ```js
 const john = {
-  firstName: 'John',
-  lastName: 'Doe',
+  firstName: "John",
+  lastName: "Doe",
   birthYear: 1986,
-  calcAge: function() {
-    this.age = 2021 - this.birthYear
-    return this.age
+  calcAge: function () {
+    this.age = 2021 - this.birthYear;
+    return this.age;
   },
-}
+};
 ```
 
 # LOOPS
@@ -187,19 +186,19 @@ const john = {
 Instead of doing this:
 
 ```js
-console.log('Lifting weights repetition 1')
-console.log('Lifting weights repetition 2')
-console.log('Lifting weights repetition 3')
-console.log('Lifting weights repetition 4')
-console.log('Lifting weights repetition 5')
-console.log('etc...')
+console.log("Lifting weights repetition 1");
+console.log("Lifting weights repetition 2");
+console.log("Lifting weights repetition 3");
+console.log("Lifting weights repetition 4");
+console.log("Lifting weights repetition 5");
+console.log("etc...");
 ```
 
 A for loop will keep your code 'DRY'
 
 ```js
-for(let rep = 1; rep <= 10; rep++) {
-  console.log(`Liftin weights repetition ${rep}`)
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Liftin weights repetition ${rep}`);
 }
 ```
 
@@ -232,26 +231,26 @@ for(let i = 0; i < years.length; i++) {
 
 ```js
 const jonas = [
-  'Jonas',
-  'Schmedtmann',
-  2021 -1986,
-  'teacher',
-  ['Michael', 'John', 'Mikey']
-]
+  "Jonas",
+  "Schmedtmann",
+  2021 - 1986,
+  "teacher",
+  ["Michael", "John", "Mikey"],
+];
 
-for (let i = jonas.length - 1; i >= 0  ; i--) {
-  console.log(jonas[i])
+for (let i = jonas.length - 1; i >= 0; i--) {
+  console.log(jonas[i]);
 }
 ```
 
 ## Looping inside a loop
 
 ```js
-for (let exercise = 1; exercise < 4  ; exercise++) {
-  console.log(`----Starting exercise ${exercise}`)
+for (let exercise = 1; exercise < 4; exercise++) {
+  console.log(`----Starting exercise ${exercise}`);
 
-  for(let rep = 1; rep < 6; rep++) {
-    console.log(`Exercise: ${exercise}: Lifting weight repetition ${rep}`)
+  for (let rep = 1; rep < 6; rep++) {
+    console.log(`Exercise: ${exercise}: Lifting weight repetition ${rep}`);
   }
 }
 ```
@@ -276,13 +275,44 @@ Exercise 1: Lifting weight repetition 3
 Exercise 1: Lifting weight repetition 4
 Exercise 1: Lifting weight repetition 5
 
-
 ## While Loop
 
 ```js
 let rep = 1;
-while(rep <= 10) {
- console.log(`Lifting wheight repetition ${rep}`)
- rep++
+while (rep <= 10) {
+  console.log(`Lifting wheight repetition ${rep}`);
+  rep++;
 }
+```
+
+# INTERMEDIATE
+
+## Destructuring Arrays
+
+• Instead of:
+
+```js
+const arr = [2, 3, 4];
+const a = arr[0];
+const b = arr[1];
+const c = arr[2];
+```
+
+• do this:
+
+```js
+const [x, y, z] = arr;
+```
+
+• Example:
+
+```js
+const resto = {
+  name: "Classico",
+  location: "Italy",
+  categories: ["Italian", "Pizzeria", "Vegetarian"],
+};
+
+const [first, second] = resto.categories;
+console.log(first, second); // will return 'Italian' and 'Pizzeria'
 ```
