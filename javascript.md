@@ -316,3 +316,59 @@ const resto = {
 const [first, second] = resto.categories;
 console.log(first, second); // will return 'Italian' and 'Pizzeria'
 ```
+
+❗ leave a space between 2 comas to skip an index of the array
+
+```js
+const [first, , second] = resto.categories;
+console.log(first, second); // will return 'Italian' and 'Vegetarian'
+```
+
+• Nested destructuring:
+
+```js
+const nested = [2, 4, [5, 6]];
+const [i, , [j, k]] = nested;
+console.log(i, j, k); // will return 2, 5 and 6
+```
+
+• Default values:
+
+```js
+const [p = 1, q = 1, r = 1] = [8, 9];
+console.log(p, q, r); // will return 8, 9 and 1
+```
+
+## Destructuring Objects
+
+```js
+const resto = {
+  name: "Classico",
+  location: "Italy",
+  categories: ["Italian", "Pizzeria", "Vegetarian"],
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0,
+      close: 24,
+    },
+  },
+};
+```
+
+```js
+const { name, openingHours, categories } = resto;
+console.log(name, openingHours, categories); // will return the selected properties of the array resto
+```
+
+```js
+const { name: restaurantName, openingHours: hours, categories: tags } = resto;
+console.log(restaurantName, hours, tags); // will return the selected properties of the array resto and change the name of the propreties by the one listed in the const
+```
