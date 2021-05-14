@@ -372,3 +372,24 @@ console.log(name, openingHours, categories); // will return the selected propert
 const { name: restaurantName, openingHours: hours, categories: tags } = resto;
 console.log(restaurantName, hours, tags); // will return the selected properties of the array resto and change the name of the propreties by the one listed in the const
 ```
+
+## The spread operator (...)
+
+Used to expand an array:
+
+```js
+const arr = [7, 8, 9]
+const newArr = [1, 2, ...arr]
+console.log(newArr) // will return 1, 2, 7, 8, 9
+```
+
+```js
+const newCategories = [...resto.categories, 'Takeaway']
+console.log(newCategories) // will return ["Italian", "Pizzeria", "Vegetarian", "Takeaway]
+```
+
+Used to join 2 arrays together:
+
+```js
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu]
+```
