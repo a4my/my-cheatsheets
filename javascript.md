@@ -393,3 +393,160 @@ Used to join 2 arrays together:
 ```js
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu]
 ```
+
+You can also console.log a whole array with the spread operator:
+
+```js
+const ingredients = ['mushroom', 'olives', 'cheese']
+console.log(...ingredients)
+// will return mushroom, olives and cheese
+```
+
+## The Rest Pattern
+
+SPREAD, because on RIGHT side of =
+
+```js
+const arr = [1, 2, 3, ...[4, 5]]
+```
+
+REST, because on LEFT side of =
+
+```js
+const [a, b, ...others] = [1, 2, 3, 4, 5]
+console.log(a, b, others)
+//will return 1, 2 [3, 4, 5]
+```
+
+```js
+const [pizza, risotto, ...otherFoods] = [
+  ...resto.mainMenu,
+  ...resto.starterMenu
+]
+console.log(pizza, risotto, otherFoods)
+// will return pizza Risotto ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Salad']
+```
+
+❗ REST element must be the last element in the array
+
+• Destructuring an OBJECT with the REST pattern:
+
+```js
+const {sat, ...weekdays} = resto.openingHours
+console.log(weekdays)
+//will return every week day opening hours except Saturday's
+```
+
+• In a function, the REST parameters will take multiple parameters and return them in an array:
+
+```js
+const add = function(...numbers) {
+  console.log(numbers)
+}
+
+add(2, 3)
+add(5, 3, 7, 2)
+add(8, 2, 5, 3, 2, 1, 4)
+//will return 3 arrays:
+// [2, 3]
+// [5, 3, 7, 2]
+// [8, 2, 5, 3, 2, 1, 4]
+```
+
+```js
+const add = function(...numbers) {
+  let sum = 0
+  for (let i = 0; i <numbers.length; i++) sum += numbers
+  console.log(sum)
+}
+
+add(2, 3)
+add(5, 3, 7, 2)
+add(8, 2, 5, 3, 2, 1, 4)
+//will return:
+// 5
+// 17
+// 25
+```
+
+```js
+const x = [23, 5, 7]
+add(...x)
+// will return 35
+```
+
+```js
+const resto = {
+  name: "Classico",
+  location: "Italy",
+  categories: ["Italian", "Pizzeria", "Vegetarian"],
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0,
+      close: 24,
+    },
+  },
+  orderPizza : function(mainIngredient, ...otherIngredient) {
+    console.log(mainIngredient)
+    console.log(otherIngredient)
+  }
+};
+
+restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach')
+// will return
+// mushrooms
+// ['onion', 'olives', 'spinach']
+```
+
+## Short circuiting (&& and ||)
+
+• || operator will return the first truthy value or the last value if all of them are falsy. Falsy value = 0, null, undefined, and ''.
+
+Use ANY data, return ANY data type, and can short circuit
+
+```js
+console.log(3 || 'Alex')
+console.log('' || 'Alex')
+console.log(true || 0)
+console.log(undefined || null)
+
+// 3
+// Alex
+// true
+// null
+```
+
+```js
+const guests1 = resto.numGests ? resto.numGuest : 10
+//will return 10 because resto.numGuest doesn't exist
+```
+
+```js
+resto.numGuests = 23
+const guests1 = resto.numGests ? resto.numGuest : 10
+//will return 23 
+```
+Could also be written this way:
+
+```js
+resto.numGuests = 23
+const guests2 = resto.numGests ||: 10
+//will return 23 
+```
+
+• && returns the first falsy value or the last value if all of them are truthy
+
+```js
+console.log(0 || 'Alex')
+console.log(7 || 'Alex')
+// 0
+// Alex
+```
