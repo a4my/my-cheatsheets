@@ -538,7 +538,7 @@ Could also be written this way:
 
 ```js
 resto.numGuests = 23
-const guests2 = resto.numGests ||: 10
+const guests2 = resto.numGests || 10
 //will return 23 
 ```
 
@@ -549,4 +549,14 @@ console.log(0 || 'Alex')
 console.log(7 || 'Alex')
 // 0
 // Alex
+```
+
+## Nullish coalescing operator (??)
+
+Null and undefined not 0 or '':
+
+```js
+resto.numGuests = 0
+const guests2 = resto.numGests ?? 10
+//will return 0 because the value is not null or undefined
 ```
