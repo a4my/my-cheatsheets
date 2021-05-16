@@ -1,5 +1,5 @@
 ---
-title: JavaScript Basics
+title: JavaScript Basics and Intermediate
 category: JavaScript
 updated: 2021-05-03
 intro: |
