@@ -8,8 +8,12 @@ intro: |
 
 # Advanced
 
-## 
+## For Of Loop
+
 
 ```js
+const menu = [...resto.startMenu, ...resto.mainMenu]
 
+for (const item of menu) console.log(item)
+// will return all items of menu
 ```
