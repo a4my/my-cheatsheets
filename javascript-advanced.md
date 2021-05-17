@@ -20,8 +20,9 @@ for (const item of menu) console.log(item)
 
 ## Enhanced Object Literals
 
+• New way of writting object properties:
 ```js
-const hours = {
+const openingHours = {
   fri: {
     open: 19,
     close: 23,
@@ -42,6 +43,51 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian'],
   starterMenu : ['Focaccia', 'Bruschetta', 'Garlic Bread'],
   mainMenu : ['Pizza', 'Salad', 'Risotto',],
-  hours // ES6 enhanced object literals // This will include the const hours into the restaurant object
+  openingHours // ES6 enhanced object literals // This will include the const hours into the restaurant object
 }
 ```
+
+• New ways of writting methods:
+
+```js
+const restaurant = {
+  name: 'Classico',
+  location: 'Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian'],
+  starterMenu : ['Focaccia', 'Bruschetta', 'Garlic Bread'],
+  mainMenu : ['Pizza', 'Salad', 'Risotto',],
+  hours,
+  orderPasta(ing1, ing2, ing3) {
+    console.log(`Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`)
+  }
+}
+```
+
+Instead of:
+
+```js
+const restaurant = {
+  name: 'Classico',
+  location: 'Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian'],
+  starterMenu : ['Focaccia', 'Bruschetta', 'Garlic Bread'],
+  mainMenu : ['Pizza', 'Salad', 'Risotto',],
+  hours,
+  orderPasta: function(ing1, ing2, ing3) {
+    console.log(`Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`)
+  }
+}
+```
+
+## Optional chaining
+
+Using ?.
+
+```js
+console.log(restaurant.openingHours.mon?.open)
+console.log(restaurant.openingHours?.mon?.open)
+```
+
+Only if the property before the ?. exists will then the following property be read
+
+
