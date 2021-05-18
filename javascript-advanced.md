@@ -504,3 +504,48 @@ const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ')
 console.log(newName)
 // will return Mr. Alex FOURMY
 ```
+
+```js
+const capitalizeName = function(name) {
+  const names = name.split(' ')
+  const namesUpper = []
+  for (const n of names) {
+    namesUpper.push(n[0].toUpperCase() + n.slice(1))
+  }
+  console.log(namesUpper.join(' '))
+}
+
+capitalizeName('jessica ann smith davis')
+capitalizeName('alex fourmy')
+```
+
+• Padding, method thats adds a number of characters until a certain string length is achieved
+
+```js
+const message = 'Go to gate 23!'
+console.log(message.padStart(25, '+'))
+// will return +++++++++++Go to gate 23!
+
+console.log('Alex'.padStart(25, '+')
+// ++++++++++++++Alex)
+```
+
+Real world example of padding:
+
+```js
+const maskCreditCard = function(number) {
+  const str = number + ''
+  const last = str.slice(-4)
+  return last.padStart(str.length, '*')
+}
+
+console.log(maskCreditCard(46658458782245)) // ***********2245
+console.log(maskCreditCard(466584587822454564784)) // ******************4784
+```
+
+• The repeat method:
+
+```js
+const message2 = 'Bad wheather... All departures cancelled...'
+console.log(message2.repeat(5))
+```
