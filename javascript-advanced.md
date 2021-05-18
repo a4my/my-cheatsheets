@@ -468,3 +468,19 @@ if(plane.startsWith('Airbus') && plane.endsWith('neo')) {
 }
 ```
 
+• Practice example:
+
+```js
+const checkBaggage = function(items) {
+  const baggage = items.toLowerCase()
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are Not allowed on board')
+  } else {
+    console.log('Welcome aboard!')
+  }
+}
+
+checkBaggage('I have a laptop and some snacks and a pocket knife')
+checkBaggage('Socks and camera')
+checkBaggage('Got some snacks and a gun for protection')
+```
