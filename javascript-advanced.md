@@ -165,3 +165,97 @@ for (const[key, {open, close}] of entries) {
 // On fri, we open at 11 and close at 23
 // On sat, we open at 0 and close at 24
 ```
+
+## Sets
+
+• A set is collection of unique values
+
+```js
+const orderSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+  ])
+
+  console.log(orderSet)
+  //will return Set(3) {'Pasta', 'Pizza', 'Risotto'}
+```
+
+❗ Sets are not arrays
+
+• Sets can also pass in strings
+
+```js
+console.log(new Set('Alex'))
+// will return Set(4) {'A','l','e','x'}
+```
+
+some properties for sets:
+
+```js
+console.log(orderSet.size)
+// will return 3
+```
+
+```js
+console.log(orderSet.has('pizza'))
+// will return true
+```
+
+```js
+orderSet.add('Garlic bread'))
+orderSet.add('Garlic bread'))
+console.log(orderSet)
+// will return Set(4) {'Pasta', 'Pizza', 'Risotto', 'Garlic Bread'}
+```
+
+```js
+orderSet.delete('Risotto'))
+console.log(orderSet)
+// will return Set(3) {'Pasta', 'Pizza', 'Garlic Bread'}
+```
+
+```js
+orderSet.clear
+console.log(orderSet)
+// will return Set(0)
+```
+
+❗ Sets have no indexes
+
+🎉 Looping through a set is possible though
+
+```js
+for (const order of orderSet) console.log(order)
+//will return
+// Pasta
+// Pizza
+// Garlic bread
+```
+
+• Conversion from an array to a set:
+
+```js
+const staff = ['Waiter','Chef','Waiter','Chef','Manager','Waiter']
+const staffUnique = new Set(staff)
+console.log(staffUnique)
+//will return Set(3) {'Waiter','Chef','Manager'}
+```
+
+• Conversion from a set to an array:
+
+```js
+const staffUnique = [...new Set(staff)]
+console.log(staffUnique)
+//will return (3) ['Waiter','Chef','Manager']
+```
+
+• get the number of unique values
+
+```js
+console.log(new Set(['Waiter','Chef','Waiter','Chef','Manager','Waiter']).size)
+//will return 3
+```
