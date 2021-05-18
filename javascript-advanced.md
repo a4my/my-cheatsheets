@@ -272,7 +272,7 @@ console.log(new Set('alexfourmy').size)
 
 ```js
 const rest = new Map() // creates a map
-rest.set('name','Classico Italiano',) // .set fills up the map by creating a key argument
+rest.set('name','Classico Italiano',) // .set fills up the map by creating an element
 rest.set(1,'Firenze, Italy',)
 console.log(rest.set(2,'Lisbon, Portugal',))
 
@@ -292,4 +292,57 @@ console.log(rest.get(true)))
 // will return 
 // Classico Italiano
 // We are open :D
+```
+
+```js
+const time = 21
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')))
+// will return
+// We are open :D
+```
+
+• Maps have the same methods as Sets (.has, .delete, .size, .clear)
+
+
+## Maps Iterations
+
+• Different way of adding element into a map:
+
+```js
+const question = new Map([
+  ['question', 'What is the best programming language?'], // [key, value]
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'Javascript'],
+  ['correct', 3],
+  [true, 'Correct 🎉'],
+  [false, 'Try again!']
+])
+
+Console.log(question)
+// will return Map(7) {etc...}
+```
+
+• Convert object to map
+
+```js
+console.log(Object.entries(openingHours))
+const hoursMap = new Map(Object.entries(openingHours))
+console.log(hoursMap)
+```
+
+• For loop in Maps:
+
+```js
+for (const [key, value] of question) {
+  if(typeof key === 'number') console.log(`Answer ${key}: ${value}`)
+}
+```
+
+• Convert a map to an array:
+
+```js
+console.log([...question])
+console.log([...question.keys()])
+console.log([question.values()])
 ```
