@@ -397,3 +397,10 @@ checkMiddleSeat('23C')
 checkMiddleSeat('3E')
 
 ```
+
+```js
+console.log(new String('Alex')) // String {"Alex"}
+console.log(typeof new String('Alex')) // object
+
+console.log(typeof new String('Alex').slice(1)) // string
+```
