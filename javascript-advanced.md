@@ -168,7 +168,7 @@ for (const[key, {open, close}] of entries) {
 
 ## Sets
 
-• A set is collection of unique values
+• A set is a collection of unique values
 
 ```js
 const orderSet = new Set([
@@ -258,4 +258,38 @@ console.log(staffUnique)
 ```js
 console.log(new Set(['Waiter','Chef','Waiter','Chef','Manager','Waiter']).size)
 //will return 3
+```
+
+```js
+console.log(new Set('alexfourmy').size)
+//will return 10
+```
+
+
+## Maps
+
+• A map is a data structure that we can use to map values to keys. In maps, the keys can have any types
+
+```js
+const rest = new Map() // creates a map
+rest.set('name','Classico Italiano',) // .set fills up the map by creating a key argument
+rest.set(1,'Firenze, Italy',)
+console.log(rest.set(2,'Lisbon, Portugal',))
+
+// will return Map(3) {"name" => "Classico Italiano", 1 => "Firenze; Italy", 2 => "Lisbon, Portugal"}
+```
+
+```js
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :D')
+  .set(false, 'We are close :(')
+
+console.log(rest.get('name'))
+console.log(rest.get(true)))
+// will return 
+// Classico Italiano
+// We are open :D
 ```
