@@ -347,7 +347,9 @@ console.log([...question.keys()])
 console.log([question.values()])
 ```
 
-## Working with Strings
+## Working with Strings - Fundamentals
+
+❗ All string methods are case sensitive
 
 • A few methods:
 
@@ -404,3 +406,65 @@ console.log(typeof new String('Alex')) // object
 
 console.log(typeof new String('Alex').slice(1)) // string
 ```
+
+## Working with Strings - Additional Methods
+
+```js
+console.log(airline.toLowerCase()) // tap air portugal
+console.log(airline.toUpperCase()) // TAP AIR PORTUGAL
+```
+
+• Fix capitalization in name:
+
+```js
+const passenger = 'aLeX'
+const passengerLower = passenger.toLowerCase() // 'alex'
+const passengerCorrect = passengerLower[0].toUpperCase + passengerLower.slice(1) // 'Alex'
+```
+
+• Comparing emails:
+
+```js
+const email = 'hello@email.com'
+const loginEmail = 'Hello@Email.Com \n'
+
+// const lowerEmail = loginEmail.toLowerCase()
+// const trimmedEmail = lowerEmail.trim()
+// OR
+
+const normalizedEmail = loginEmail.toLowerCase().trim()
+console.log(normalizedEmail) // hello@email.com
+```
+
+• Replacing strings
+
+```js
+const priceGB = '288.97£'
+const priceUS = priceGB.replace('£', '$').replace(',', '.')
+console.log(priceUS) // '288,97$'
+```
+
+```js
+const announcement = 'All passengers come to boarding door 23. Boarding door 23!'
+
+console.log(announcement.replace('door', 'gate'))
+// 'All passengers come to boarding gate 23. Boarding door 23!'
+
+console.log(announcement.replaceAll('door', 'gate'))
+// 'All passengers come to boarding gate 23. Boarding gate 23!'
+
+```
+
+• Returning Booleans:
+
+```js
+const plane = 'Airbus 320neo'
+console.log(plane.includes('A320')) // true
+console.log(plane.includes('boeing')) // false
+console.log(plane.startsWith('Air')) // true
+
+if(plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the NEW Airbus family!')
+}
+```
+
