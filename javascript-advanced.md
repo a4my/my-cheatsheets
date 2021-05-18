@@ -484,3 +484,23 @@ checkBaggage('I have a laptop and some snacks and a pocket knife')
 checkBaggage('Socks and camera')
 checkBaggage('Got some snacks and a gun for protection')
 ```
+
+• The .split() method
+
+```js
+console.log('a+very+nice+string'.split('+'))
+// (4) ["a", "very", "nice", "string"]
+
+console.log('Alex Fourmy'.split(' '))
+// (2) ["Alex", "Fourmy"]
+```
+
+• The .join() method:
+
+```js
+const [firstName, lastName] = 'Alex Fourmy'.split(' ')
+
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ')
+console.log(newName)
+// will return Mr. Alex FOURMY
+```
