@@ -346,3 +346,54 @@ console.log([...question])
 console.log([...question.keys()])
 console.log([question.values()])
 ```
+
+## Working with Strings
+
+• A few methods:
+
+```js
+const airline = 'TAP Air Portugal'
+const plane = 'A320'
+
+console.log(plane[0]) // A
+console.log(plane[1]) // 3
+console.log('B737'[0]) // B
+
+console.log(airline.length) // 16
+
+console.log(airline.indexOf('r')) // 6
+console.log(airline.lastIndexOf('r')) // 10
+
+console.log(airline.indexOf('Portugal')) // 8
+// ❗ this method is case sensitive
+
+console.log(airline.slice(4)) // Air Portugal
+// extracts a sub-string after the index of the method
+
+console.log(airline.slice(4, 7)) // Air
+// extracts a sub-string between the start and end indexes of the method
+
+console.log(airline.slice(0, airline.indexOf(' '))) // TAP
+
+console.log(airline.slice(airline.lastIndexOf(' ') + 1)) // Portugal
+
+console.log(airline.slice(airline.slice(-2)) // al
+console.log(airline.slice(airline.slice(1, -1)) // AT Air Portugal
+```
+
+• Example in a function:
+
+```js
+const checkMiddleSeat = function(seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1)
+  if(s === 'B' || s === 'E')
+  console.log('You got the middle seat!')
+  else console.log('You got lucky!')
+}
+
+checkMiddleSeat('11B')
+checkMiddleSeat('23C')
+checkMiddleSeat('3E')
+
+```
