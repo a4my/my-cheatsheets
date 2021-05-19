@@ -1,7 +1,7 @@
 ---
 title: JavaScript Basics and Intermediate
 category: JavaScript
-updated: 2021-05-03
+updated: 2021-05-19
 intro: |
   A quick overview of new JavaScript features in ES2015, ES2016, ES2017, ES2018 and beyond.
 ---
