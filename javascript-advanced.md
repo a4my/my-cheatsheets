@@ -1,7 +1,7 @@
 ---
 title: JavaScript Advanced 
 category: JavaScript
-updated: 2021-05-16
+updated: 2021-05-19
 intro: |
   Advanced concepts of new JavaScript features in ES2015, ES2016, ES2017, ES2018 and beyond.
   For Of loop / Enhanced Object Literals / Optional chaining / Looping objects / Sets / Maps / Strings /
