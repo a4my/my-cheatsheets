@@ -114,6 +114,49 @@ console.log(swiss)
 
 ❗ But you can still use .call() on an array buy using the spread operator:
 
-````js
+```js
 book.call(swiss, ...flightData)
 ```
+
+## The bind() method
+
+❔ bind() does not immediately call the function instead it returns a new function where the this.keyword is bound
+
+```js
+const bookEW = book.bind(eurowings)
+const bookLH = book.bind(lufthansa)
+const bookLX = book.bind(swiss)
+bookEw(23, 'Steve Williams')
+```
+Which leads to:
+
+```js
+const bookEW23 = book.bind(eurowings, 23)
+bookEW23('Alex Smith')
+bookEW23('Martin Cooper')
+```
+
+### With event listerners
+
+```js
+lufthansa.planes = 300
+lufthansa.buyPlane = function () {
+  console.log(this)
+  this.planes++
+  console.log(this.planes)
+}
+document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane).bind(lufthansa)
+```
+
+### Partial application (pre-set parameters)
+
+```js
+const addTax = (rate, value) => value + value * rate
+console.log(addTax(0.1, 200))
+
+const addVAT = addTax.bind(null, 0.23) 
+// equals addVAT = value => value + value *0.23
+
+console.log(addVAT(100))
+```
+
