@@ -1,7 +1,7 @@
 ---
 title: JavaScript Functions 
 category: JavaScript
-updated: 2021-05-21
+updated: 2021-05-23
 intro: |
   A closer look at functions.
 ---
