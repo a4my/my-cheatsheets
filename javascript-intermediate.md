@@ -550,3 +550,85 @@ console.log(maskCreditCard(466584587822454564784)) // ******************4784
 const message2 = 'Bad wheather... All departures cancelled...'
 console.log(message2.repeat(5))
 ```
+
+
+## Working with Arrays
+
+### slice() method:
+
+```js
+let arr = ['a', 'b', 'c', 'd', 'e']
+
+console.log(arr.slice(2)) // ['c', 'd', 'e']
+console.log(arr.slice(2, 4)) // ['c', 'd']
+console.log(arr.slice(-2)) // ['d', 'e']
+console.log(arr.slice(-1)) // ['e']
+console.log(arr.slice(1, -2)) // ['b', 'c']
+console.log(arr.slice()) // ['a', 'b', 'c', 'd', 'e']
+console.log(arr.slice(...arr)) // ['a', 'b', 'c', 'd', 'e']
+```
+
+❗ The end parameter is not included in the output
+
+### splice() method:
+
+❗ Mutates the original array as opposed to the slice method
+
+```js
+console.log(arr.splice(2)) // ['c', 'd', 'e']
+console.log(arr) // ['a', 'b']
+
+console.log(arr.splice(1,2)) // ['c', 'd']
+console.log(arr) // ['a', 'd']
+```
+
+### reverse() method
+❗ Mutates the original array as opposed to the slice method
+
+```js
+const arr2 = ['j', 'i', 'h', 'g', 'f']
+console.log(arr2.reverse()) // ['f', 'g', 'h', 'i', 'j']
+console.log(arr2) // ['f', 'g', 'h', 'i', 'j']
+```
+
+### concat() method
+
+```js
+const letters = arr.concat(arr2)
+console.log(letters) // ['a', 'b', 'c', 'd', 'e','f', 'g', 'h', 'i', 'j']
+console.log(...arr, ...arr2) // ['a', 'b', 'c', 'd', 'e','f', 'g', 'h', 'i', 'j']
+```
+
+### join() method
+
+```js
+console.log(letters.join(' - ')) // a - b - c - d - e - f - g - h - i - j
+```
+
+### forEach(current Element, current Index, entire Array) method
+
+Instead of:
+
+```js
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+for (const movement of movements) {
+  if (movement < 0) {
+    console.log(`You deposited ${movement}`)
+  } else {
+    console.log(`You withdrew ${Math.abs(movement)}`)
+  }
+}
+```
+
+Use forEach() :
+
+```js
+movements.forEach(function(movement) {
+  if (movement < 0) {
+    console.log(`You deposited ${movement}`)
+  } else {
+    console.log(`You withdrew ${Math.abs(movement)}`)
+  }
+})
+```
