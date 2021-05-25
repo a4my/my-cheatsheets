@@ -605,18 +605,18 @@ console.log(...arr, ...arr2) // ['a', 'b', 'c', 'd', 'e','f', 'g', 'h', 'i', 'j'
 console.log(letters.join(' - ')) // a - b - c - d - e - f - g - h - i - j
 ```
 
-### forEach(current Element, current Index, entire Array) method
+### forEach(function(current Element, current Index, entire Array)) method
 
 Instead of:
 
 ```js
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-for (const movement of movements) {
-  if (movement < 0) {
-    console.log(`You deposited ${movement}`)
+for (const [i, mov] of movements.entries) {
+  if (mov < 0) {
+    console.log(`Movement ${i + 1}: You deposited ${mov}`)
   } else {
-    console.log(`You withdrew ${Math.abs(movement)}`)
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`)
   }
 }
 ```
@@ -624,11 +624,36 @@ for (const movement of movements) {
 Use forEach() :
 
 ```js
-movements.forEach(function(movement) {
-  if (movement < 0) {
-    console.log(`You deposited ${movement}`)
+movements.forEach(function(mov, i, arr) {
+  if (mov < 0) {
+    console.log(`Movement ${i + 1}: You deposited ${mov}`)
   } else {
-    console.log(`You withdrew ${Math.abs(movement)}`)
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`)
   }
 })
+```
+
+### forEach() on maps
+
+```js
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function(value, key, map)) {
+  console.log(`${key}: ${value}`)
+}
+```
+
+### forEach() on sets
+
+```js
+const currenciesUnique = new Set(['USD','GBP','USD', 'EUR', 'EUR']);
+
+console.log(currenciesUnique)
+currenciesUnique.forEach(function(value, _, map)) {
+  console.log(`${value}: ${value}`)
+}
 ```
