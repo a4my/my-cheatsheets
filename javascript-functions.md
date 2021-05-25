@@ -179,3 +179,58 @@ console.log(addVAT(100))
 (()=> console.log('This function will ALSO only run once!')
 )()
 ```
+
+# Closures
+
+A closure is the closed-over variable environment of the execution context in which a function was created, even after that execution context is gone.
+
+A closure  gives a function access to all the variable of its parent function, even after that parent function has returned. The function keeps a reference of its outer scope, which preserves the scope chain throughout time.
+
+A closure makes sure that a function doesn't loose connection to variables that existed at the function birth's place.
+
+A closure is like a backpack that a function carries around wherever it goes. This backpack has all the variables that were present in the environment where the function was created.
+
+Example:
+
+```js
+let f;
+
+const g = function() {
+  const a = 23
+  f = function() {
+    console.log(a * 2)
+  }
+}
+
+g()
+f()
+// will return 46
+```
+
+Re-assigning f function:
+
+```js
+let f;
+
+const g = function() {
+  const a = 23
+  f = function() {
+    console.log(a * 2)
+  }
+}
+
+const h = function() {
+  const b = 773
+  f = function() {
+    console.log(b * 2)
+  }
+}
+
+g()
+f()
+// will return 46
+
+h()
+f()
+// will return 1554
+```
