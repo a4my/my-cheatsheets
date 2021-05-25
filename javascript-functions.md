@@ -160,3 +160,22 @@ const addVAT = addTax.bind(null, 0.23)
 console.log(addVAT(100))
 ```
 
+## Immediately Invoked Function Expression (IIFE)
+
+• IIFE will only be run once:
+
+```js
+(function() {
+  console.log('This function will only run once!')
+})()
+```
+
+❗ Note that the function needs to be wrapped in parentheses
+❗❗ Note that the function needs to be called too ()
+
+• IIFE arrow function:
+
+```js
+(()=> console.log('This function will ALSO only run once!')
+)()
+```
