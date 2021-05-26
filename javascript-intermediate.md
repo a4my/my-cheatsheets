@@ -657,3 +657,32 @@ currenciesUnique.forEach(function(value, _, map)) {
   console.log(`${value}: ${value}`)
 }
 ```
+
+
+## Data Transformations: Map, Filter and Reduce
+
+Map returns a new array containing the results of applying an operation on an original array elements.
+
+Filter returns a new array containing the array elements that have passed a specified test condition.
+
+Reduce boils all array elements down to one single value (eg adding all elements together)
+
+### The Map() method
+
+```js
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1700]
+
+const euroToUSD = 1.1
+
+const movementsToUSD = movements.map(function(mov) {
+  return move * euroToUSD
+})
+
+console.log(movementsToUSD) // [220, 495, -440, 3300, -715, -143, 77, 1430]
+```
+
+➕ you can also use arrow function to replace the function above 
+
+```js
+const movementsToUSD = movements.map(mov => mov * euroToUSD)
+```
