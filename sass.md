@@ -10,7 +10,7 @@ updated: 2020-07-03
 
 This is a quick reference to [Sass stylesheets](https://sass-lang.com).
 
-- [Sass documentation](https://sass-lang.com/documentation) _(sass-lang.com)_
+- [Sass documentation](https://sass-lang.com/documentation) 
 
 ### Variables
 
