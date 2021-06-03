@@ -731,3 +731,23 @@ const totalDepositUSD = movements
 ❕ Do not chain method like splice or reverse 
 ❗ Do not overuse chaining as it slow down performances (large scales applications)
 
+
+### The find() method
+
+This method loops through an array and returns the first value that satisfies the condition
+
+```js
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1700]
+
+const firstWithdrawal = movements.find(mov => mov < 0) 
+
+console.log(firstWithdrawal) // will return -400
+```
+
+Other example:
+
+```js
+const account = accounts.find(acc => acc === 'Jessica Davis') 
+
+console.log(account) // will return the object of Jessica Davis
+```
