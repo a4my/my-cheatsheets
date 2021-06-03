@@ -713,3 +713,21 @@ const balance = movements.reduce(function(acc, cur, i, arr) {
 
 console.log(balance) // 3840
 ```
+
+### Chaining methods (Map, Filter and Reduce)
+
+Example:
+
+```js
+const eurToUsd = 1.1
+const totalDepositUSD = movements
+  .filter(mov => mov > 0 )
+  .map(mov => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov, 0)
+
+  console.log(totalDepositUSD) // will return the sum of the movements array in USD and with values that greater than 0
+```
+
+❕ Do not chain method like splice or reverse 
+❗ Do not overuse chaining as it slow down performances (large scales applications)
+
