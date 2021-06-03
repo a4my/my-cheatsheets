@@ -7,7 +7,7 @@ intro: |
   For Of loop / Enhanced Object Literals / Optional chaining / Looping objects / Sets / Maps / Strings /
 ---
 
-# Advanced
+# Intermediate
 
 ## For Of Loop
 
@@ -685,4 +685,31 @@ console.log(movementsToUSD) // [220, 495, -440, 3300, -715, -143, 77, 1430]
 
 ```js
 const movementsToUSD = movements.map(mov => mov * euroToUSD)
+```
+
+### The filter() method
+
+```js
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1700]
+
+const deposits = movements.filter(function(mov, i, arr) {
+  return mov > 0
+})
+
+console.log(deposits) // [200, 450, 3000, 70, 1700]
+```
+
+### The reduce() method
+
+```js
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1700]
+
+const balance = movements.reduce(function(acc, cur, i, arr) {
+  return acc + cur
+}, 0)
+
+// acc = sum
+// in this example the sum is set to 0 and will add the movements to the sum
+
+console.log(balance) // 3840
 ```
