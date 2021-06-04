@@ -924,3 +924,20 @@ const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 arr.fill(23, 4, 6)
 // will return [1, 2, 3, 4, 23, 23, 7]
 ```
+
+### The Array.from() method
+
+This method is used on the array constructor and not directly on the array
+
+```js
+const y = Array.from({length: 7}, () => 1)
+console.log(y)
+// will return (7) [1, 1, 1, 1, 1, 1, 1]
+```
+
+```js
+const z = Array.from({length: 7}, (_, i) => i + 1)
+console.log(z)
+// will return (7) [1, 2, 3, 4, 5, 6, 7]
+```
+
