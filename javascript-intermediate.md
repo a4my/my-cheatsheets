@@ -751,3 +751,17 @@ const account = accounts.find(acc => acc === 'Jessica Davis')
 
 console.log(account) // will return the object of Jessica Davis
 ```
+
+### The some() method
+
+Checks a condition and return a boolean
+
+```js
+ const movements = [200, 450, -400, 3000, -650, -130, 70, 1700]
+
+ const anyDeposits = movements.some(mov => mov > 0)
+ // will return true
+
+ const anyDeposits = movements.some(mov => mov > 5000)
+// will return false
+```
