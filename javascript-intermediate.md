@@ -795,3 +795,27 @@ Returns true if every elements satisfy the condition
  // will return [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
+### The flatMap() method
+
+❗ 2020 method, will not work with super old browser
+
+• Instead of chaining methods like this:
+
+```js
+ const overalBalance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0)
+ console.log(overalBalance)
+```
+
+• Do this:
+
+```js
+const overalBalance = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0)
+ console.log(overalBalance)
+```
+
+❕ flatMap() only goes 1 level deep, use map().flat() if you need to go deeper
