@@ -885,3 +885,42 @@ movements.sort((a, b) => {
  ```js
 movements.sort((a, b) => b - a)
  ```
+
+
+### The fill() method
+
+This method is used to fill in arrays
+
+```js
+console.log([1, 2, 3, 4, 5, 6, 7])
+console.log(new Array(1, 2, 3, 4, 5, 6, 7))
+
+const x = new Array(7)
+console.log(x)
+// will return (7) [1, 2, 3, 4, 5, 6, 7]
+// will return (7) [1, 2, 3, 4, 5, 6, 7]
+// will return (7) [empty x7]
+
+x.fill(1)
+// will return (7) [1, 1, 1, 1, 1, 1, 1]
+```
+
+❗ This methods mutates the original array
+
+🔹 The fill() method also has parameters: fill(value, begin, end)
+
+```js
+x.fill(1, 3)
+// will return (7) [empty x3 1, 1, 1, 1]
+```
+
+```js
+x.fill(1, 3, 5)
+// will return (7) [empty x3 1, 1, empty x2]
+```
+
+```js
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+arr.fill(23, 4, 6)
+// will return [1, 2, 3, 4, 23, 23, 7]
+```
