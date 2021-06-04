@@ -765,3 +765,12 @@ Checks a condition and return a boolean
  const anyDeposits = movements.some(mov => mov > 5000)
 // will return false
 ```
+
+### The some() method
+
+Returns true if every elements satisfy the condition
+
+```js
+ console.log(movements.every(mov => mov > 0))
+ // will return false
+```
