@@ -774,3 +774,24 @@ Returns true if every elements satisfy the condition
  console.log(movements.every(mov => mov > 0))
  // will return false
 ```
+
+
+### The flat() method
+
+❗ 2020 method, will not work with super old browser
+
+```js
+ const arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+ console.log(arr.flat())
+ // will return [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+```js
+ const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8]
+ console.log(arr.flat(1))
+ // will return [Array(2), 3, 4, [Array(2), 7, 8]
+
+ console.log(arr.flat(2))
+ // will return [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
