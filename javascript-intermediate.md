@@ -819,3 +819,69 @@ const overalBalance = accounts
 ```
 
 ❕ flatMap() only goes 1 level deep, use map().flat() if you need to go deeper
+
+
+### The sort() method
+
+❗ mutates the original array
+
+• on strings:
+
+```js
+ const owners = ['Jonas','Zach', 'Adam', 'Martha']
+ console.log(owners.sort())
+ // will return ['Adam', 'Jonas', 'Martha', 'Zach']
+ console.log(owners)
+ // will return ['Adam', 'Jonas', 'Martha', 'Zach']
+```
+
+• on numbers:
+
+```js
+ const movements = [200, 450, -400, 3000, -650, -130, 70, 1700]
+ // ASCENDING ORDER
+ movements.sort((a, b) => {
+   if(a > b) return 1
+   if(a < b) return -1
+ })
+ console.log(movements)
+ // will return [-650, -400, -130, 70, 200, 450, 1700, 3000]
+
+ // DESCENDING ORDER
+ movements.sort((a, b) => {
+   if(a > b) return -1
+   if(a < b) return 1
+ })c
+ console.log(movements)
+ // will return [3000, 1700, 450, 200, 70, -130, -400,-650]
+```
+
+Tips:
+
+```js
+movements.sort((a, b) => {
+   if(a > b) return 1
+   if(a < b) return -1
+ })
+ ```
+
+ can also be written this way
+
+ ```js
+movements.sort((a, b) => a - b)
+ ```
+
+ and 
+
+```js
+movements.sort((a, b) => {
+   if(a > b) return -1
+   if(a < b) return 1
+ })
+ ```
+
+ can also be written this way
+
+ ```js
+movements.sort((a, b) => b - a)
+ ```
