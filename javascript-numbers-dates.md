@@ -165,3 +165,33 @@ console.log(2.7).toFixed(3) // 2.700
 console.log(2.345).toFixed(2) // 2.35
 console.log(+(2.345)).toFixed(2) // 2.35
 ```
+
+
+### The remainder operator
+
+```js
+console.log(5 / 2) // 2.5 // 5 = 2 * 2 + 1 // 1 is the remainder
+console.log(5 % 2) // 1
+console.log(8 % 3) // 2
+```
+
+🤫 Checking if a value is an even number or an odd number:
+
+Even numbers can be divided by 2 and the remainder is always 0
+
+```js
+console.log(6 / 2) // 3 
+console.log(6 % 2) // 0
+
+console.log(7 / 2) // 3.5 
+console.log(7 % 2) // 1
+```
+
+so we can create a function to check if a number is an even or odd number:
+
+```js
+const isEven = n => n 5 % 2 === 0
+console.log(8) // true
+console.log(23) // false
+console.log(514) // true
+```
