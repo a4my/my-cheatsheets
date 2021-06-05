@@ -64,3 +64,63 @@ console.log(Number.isInteger(20)) // true
 console.log(Number.isInteger('20')) // true
 console.log(Number.isInteger(+'20X')) // false
 ```
+
+## The Math() methods
+
+• sqrt()
+
+```js
+console.log(Math.sqrt(25)) // 5
+```
+
+• max() and min()
+
+```js
+console.log(Math.max(5, 18 , 23, 11 , 2)) // 23
+console.log(Math.max(5, 18 , '23', 11 , 2)) // 23
+console.log(Math.max(5, 18 , '23px', 11 , 2)) // NaN
+
+
+console.log(Math.min(5, 18 , 23, 11 , 2)) // 2
+console.log(Math.max(5, 18 , '23', 11 , 2)) // 2
+```
+
+• PI() calculates the area of a circle with a radius (ie 10px)
+
+```js
+console.log(Math.PI * Number.parseFloat('10px') ** 2 // 314.159etc
+```
+
+• random() returns a random decimal number between 0 and 1
+
+```js
+console.log(Number.random() * 6) // ie a random throw of dice
+```
+
+❗ This will return a DECIMAL number between 0 and 5
+
+
+• trunc() removes the decimals from a number
+
+```js
+console.log(Math.trunc(Number.random() * 6)) // ie a random throw of dice
+```
+
+❕ Will now return a random number between 0 and 5 with no decimals
+❗ Still returns a number between 0 and 5 and not between 0 and 6
+
+```js
+console.log(Math.trunc(Number.random() * 6) +1 ) // 
+```
+
+Adding + 1 fixes the issue and now we will get a random number between 0 and 6 with no decimals
+
+
+👍 returning a random number between a min and a max value
+
+```js
+const randomInt = (min, max) =>
+    Math.trunc(Math.random() * (max - min) + 1) + min
+
+console.log(10, 20) // returns a random number between 10 and 20 
+```
