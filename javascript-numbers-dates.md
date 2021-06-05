@@ -195,3 +195,18 @@ console.log(8) // true
 console.log(23) // false
 console.log(514) // true
 ```
+
+😎 we can use the remainder operator as a condition in a function to higlight lines in a table 
+
+```js
+// example with my-bank-app
+
+labelBalance.addEventListener('click', function() {
+    [...document.querySelectorAll('.movements__row')].forEach(function(row, i) {
+        // 0, 2, 4, 6, ...
+        if(i % 2 === 0) row.style.backrgoundColor = 'orangered'
+        // 0, 3, 6, 9, ...
+        if(i % 3 === 0) row.style.backrgoundColor = 'blue'
+    })
+})
+```
