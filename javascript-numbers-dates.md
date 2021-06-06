@@ -213,3 +213,48 @@ labelBalance.addEventListener('click', function() {
 
 ## Working with Big Integers
 
+Biggest number JS can handle is:
+
+```js 
+console.log(2 ** 53 - 1) // 9007199254740991
+console.log(Number.MAX_SAFE_INTEGER) // 9007199254740991
+```
+
+but you can use n to handle bigger numbers:
+
+```js
+console.log(4030948745873498204935745985093409) // will return 4.0309487458734
+console.log(4030948745873498204935745985093409n) // will return 4030948745873498204935745985093409
+```
+
+which means you can perform operations wiht n
+
+```js
+console.log(1000n + 1000n) // 2000n
+console.log(4030948745873498204935745985093409n * 234903284098234n) //(result)n
+```
+
+❗ You cannot mix BigInt and other types:
+
+```js
+const huge = 4030948745873498204935745985093409n
+const num = 23
+console.log(huge * num) // will return an error
+```
+
+❕ You will need to convert the other type of number into a BigInt to perform the operation:
+
+```js
+console.log(huge * BigInt(num)) // will work
+```
+
+❕ comparision will work with < > and == but not with ===:
+
+```js
+console.log(23n > 15) // true
+console.log(20n === 20) // false
+console.log(20n == 20) // true
+```
+
+❗❗ Math() operator doesn't work on BigInt
+
