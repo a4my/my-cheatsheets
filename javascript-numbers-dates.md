@@ -258,3 +258,30 @@ console.log(20n == 20) // true
 
 ❗❗ Math() operator doesn't work on BigInt
 
+
+## Working with dates
+
+### Creating dates
+
+```js
+const now = new Date()
+console.log(now) // will return current date and time
+
+console.log(new Date('Aug 02 2020 18:05:41'))
+console.log(new Date('December 24, 2020'))
+console.log(new Date(accounts1.movementsDates[0]))
+
+console.log(new Date(2037, 10, 19, 15, 23, 5)) // Thu Nov 19 2037 15:23:05
+console.log(new Date(2037, 10, 31)) // Thu Dec 31
+
+console.log(new Date(0)) // Thu Jan 01 1970 01:00:00
+console.log(new Date(3 * 24 * 60 * 60 * 1000)) // will return the date 3 days later the line above
+```
+
+### Woking with dates
+
+```js
+const future = new Date(2037, 10, 19, 15, 23, 5)
+console.log(future)
+```
+
