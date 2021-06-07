@@ -320,7 +320,7 @@ const days1 = calcDaysPassed(
 console.log(days1) // 10
 ```
 
-### Internationaliznig dates
+### Internationalizing dates
 
 ```js
 const now = new Date()
@@ -339,5 +339,24 @@ OR
 ```js
 const locale = navigator.language
  labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(now)
+```
+
+### Internationalizing numbers
+
+```js 
+const num = 3884764.23
+
+const options = {
+    style: 'unit',
+    unit: 'mile-per-hour'
+}
+
+console.log('US:     ', new Intl.NumberFormat('en-US', options).format(num))
+console.log('Germany:     ', new Intl.NumberFormat('de-DE', options).format(num))
+console.log('Syria:     ', new Intl.NumberFormat('ar-SY', options).format(num))
+
+console.log(
+    navigator.language,
+    new Intl.NumberFormat(navigator.language, options).format(num))
 ```
 
