@@ -278,10 +278,24 @@ console.log(new Date(0)) // Thu Jan 01 1970 01:00:00
 console.log(new Date(3 * 24 * 60 * 60 * 1000)) // will return the date 3 days later the line above
 ```
 
-### Woking with dates
+### Methods with dates
 
 ```js
 const future = new Date(2037, 10, 19, 15, 23, 5)
+console.log(future.getFullYear()) // 2037
+console.log(future.getMonth()) // 10
+console.log(future.getDate()) // 19
+console.log(future.getDay()) // 4 (= THU)
+console.log(future.getHours()) // 15 
+console.log(future.getMinutes()) // 23
+console.log(future.getSeconds()) // 05
+
+console.log(future.toISOString()) // 2037-11-19T15:23:05.000Z
+console.log(future.getTime()) // 2142256980000 (milliseconds that have passed since the 1st Jan 1970)
+
+console.log(Date.now()) // will return current time
+
+future.setFullYear(2040) // will set 2040 as a new year 
 console.log(future)
 ```
 
