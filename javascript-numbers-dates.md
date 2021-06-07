@@ -299,3 +299,24 @@ future.setFullYear(2040) // will set 2040 as a new year
 console.log(future)
 ```
 
+### Operations with dates
+
+The below will return a number in milliseconds:
+
+```js
+const future = new Date(2037, 10, 19, 15, 23, 5)
+console.log(future) // 2142256980000
+```
+
+Which means we can do operations:
+
+```js
+const calcDaysPassed = (date1, date2) => (date2 - date1) / (1000 * 60 * 6 * 24)
+
+const days1 = calcDaysPassed(
+    new Date(2037, 3, 4)) 
+    new Date(2037, 3, 14))
+
+console.log(days1) // 10
+```
+
