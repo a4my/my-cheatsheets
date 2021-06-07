@@ -320,3 +320,24 @@ const days1 = calcDaysPassed(
 console.log(days1) // 10
 ```
 
+### Internationaliznig dates
+
+```js
+const now = new Date()
+const options =  {
+    hour: 'numeric',
+    minute: 'numeric',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    weekday: 'long',
+}
+labelDate.textContent = new Intl.DatetimeFormat('en-US', options).format(now) // will return date in US format ie 12/24/2020
+```
+OR
+
+```js
+const locale = navigator.language
+ labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(now)
+```
+
