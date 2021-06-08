@@ -104,8 +104,17 @@ you can also set an attribute this way:
 logo.alt = 'Beautiful minimalist logo'
 ```
 
+
 ```js
 console.log(logo.src) // absolute version: http://127.0.0.1:8080/img/logo.png
 console.log(logo.getAttribute('src')) // relative version: img/logo.png
 ```
 
+### Classes
+
+```js 
+logo.classList.add('active')
+logo.classList.remove('active')
+logo.classList.toggle('active')
+logo.classList.contains('active')
+```
