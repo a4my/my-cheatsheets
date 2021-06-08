@@ -1,5 +1,5 @@
 ---
-title: JavaScript Numbers and Dates 
+title: JavaScript Numbers, Timers and Dates 
 category: JavaScript
 updated: 2021-06-05
 intro: |
@@ -360,3 +360,56 @@ console.log(
     new Intl.NumberFormat(navigator.language, options).format(num))
 ```
 
+# Working with Timers
+
+## setTimeout() method
+
+```js
+setTimeout(() => console.log('Here is your pizza 🍕'), 3000) // will be returned in the console 3s after refreshing the console
+```
+
+```js
+setTimeout(() => console.log('Here is your pizza 🍕'), 3000)
+console.log('Waiting...')
+
+// The second line of code will appear first then the first line 3s later
+```
+
+This method also takes in parameters:
+
+```js
+setTimeout(
+    (ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing}`),
+    3000,
+    'olives',
+    'spinach'
+)
+
+//will return Here is your pizza with olives and spinach
+```
+
+You can also cancel the timeout before the delay, the whole string won't appear in the console:
+
+```js
+const ingredients = ['olives', 'spinach']
+const pizzaTimer = setTimeout(
+    (ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing}`),
+    3000,
+    ...ingredients
+)
+
+if(ingredients.includes('spinach')) clearTimeout(pizzaTimer)
+
+```
+
+## setInterval() method
+
+Used this method to repeat a function at a certain interval:
+
+```js
+setInterval(function(){
+    const now = new Date()
+    console.log(now)
+}, 1000)
+// The current time will appear in the console every second
+```
