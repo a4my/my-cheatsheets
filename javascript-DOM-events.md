@@ -155,7 +155,7 @@ console.log(h1.nextSibling)
 console.log(h1.parentElement.children)
 ```
 
-### DOM events
+### Other DOM events
 
 ```js
     document.addEventListener('DOMContentLoaded', function(e) {
