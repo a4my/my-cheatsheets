@@ -154,3 +154,21 @@ console.log(h1.nextSibling)
 
 console.log(h1.parentElement.children)
 ```
+
+### DOM events
+
+```js
+    document.addEventListener('DOMContentLoaded', function(e) {
+        console.log('HTML parsed amd DOM tree built', e)
+    })
+
+    window.addEventListener('load', function(e) {
+        console.log('Page fully Loaded', e)
+    })
+
+    // Send an alert when leaving site, do not overuse this feature
+    window.addEventListener('beforeunload', function(e) {
+        e.preventDefault(e)
+        e.returnValue = ''
+    })
+```
