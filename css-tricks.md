@@ -42,3 +42,10 @@ box-shadow: 2px 1px 2px rgba(0, 0, 0, 99);
 ```css
 backdrop-filter: blur(6px);
 ```
+
+• Neumorphism:
+
+```css
+box-shadow: 13px 13px 20px var(--shadow--1), 
+            -13px -13px 20px var(--shadow--2);
+```
