@@ -32,14 +32,14 @@ The 4 fundamental principles of OOP: Abstraction, Encapsulation, Inheritance and
 --> A child class can overwrite a method it inherited from a parent class.
 
 
-# Prototypes
+## Prototypes
 
 All objects in JS are linked to a prototype object.
 
 The prototype contains methods (behavior) that are accssible to all objects linked to that prototype. Behavior is delegated to the linked prototype object.
 
 
-# How to implement prototypes?
+## How to implement prototypes?
 
 ### Constructor functions
 
@@ -57,7 +57,7 @@ The prototype contains methods (behavior) that are accssible to all objects link
 • The easiest and most straight forward way of linking an object to a prototype object.
 
 
-# Constructor Functions and the new Operator
+## Constructor Functions and the new Operator
 
 ```js
 const Person = function(firstName, birthYear) {
@@ -90,3 +90,44 @@ console.log(jay instanceof Person) // false
 ```
 
 ❗ constructor names always start with a capital letter.
+
+
+## Prototype inheritance
+
+```js
+Person.prototype.calcAge = function() {
+        console.log(2037 - this.birthYear)
+    }
+```
+
+```js
+    alex.calcAge() 
+    annie.calcAge()
+```
+
+will return the result of the function.
+
+
+```js
+    console.log(Person.prototype)
+    // OR
+    console.log(alex.__proto__)
+```
+it will return the constructor, the functions and properties of Person
+
+```js
+    console.log(alex.__proto__ === Person.prototype) // true
+
+    console.log(Person.prototype.isPrototypeOf(alex)) // true
+    console.log(Person.prototype.isPrototypeOf(annie)) // true
+    console.log(Person.prototype.isPrototypeOf(Person)) // false
+```
+
+```js
+    Person.prototype.species = 'Homo Sapiens'
+
+    console.log(alex.species, annie.species) // Home Sapiens Home Sapiens
+
+    console.log(tom.hasOwnProperty('firstName')) // true
+    console.log(tom.hasOwnProperty('species')) // false
+```
