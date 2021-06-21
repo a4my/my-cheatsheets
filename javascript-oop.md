@@ -10,22 +10,83 @@ intro: |
 
 Classes are like blueprint from which we can create new objects.
 
-We call all objects created through a class instances.
+We call all objects created through a class instances. Creating instances is called instantiation.
 
 The 4 fundamental principles of OOP: Abstraction, Encapsulation, Inheritance and Polymorphism
 
-## Abstraction
+
+### Abstraction
 
 --> Ignoring or hiding details that don't matter, allowing us to get an overview.
 
-## Encapsulation
+### Encapsulation
 
 --> Keeping properties and methods private inside the class so they are not accessible from outside the class
 
-## Inheritance
+### Inheritance
 
 --> Making all properties and methods of a certain class available to a child class, forming a hierarchical between classes. This allows us to reuse common logic and to model real world relationships.
 
-## Polymorphism
+### Polymorphism
 
 --> A child class can overwrite a method it inherited from a parent class.
+
+
+# Prototypes
+
+All objects in JS are linked to a prototype object.
+
+The prototype contains methods (behavior) that are accssible to all objects linked to that prototype. Behavior is delegated to the linked prototype object.
+
+
+# How to implement prototypes?
+
+### Constructor functions
+
+• Technique to creae objects from a function
+• This is how built-in objects like arrays, maps or sets are actually implemented
+
+### ES6 Classes
+
+• Modern alternative to constructor function syntax
+• 'Syntactic sugar': behind the scenes, ES6 classes work exactly like constructor functions
+• ES6 classes do not behave like classes in classical OOP
+
+### Object.create()
+
+• The easiest and most straight forward way of linking an object to a prototype object.
+
+
+# Constructor Functions and the new Operator
+
+```js
+const Person = function(firstName, birthYear) {
+    // Instance porperties
+    this.firstName = firstName
+    this.birthYear = birthYear
+
+    // Never do this:
+    // this.calcAge = function() {
+    //     console.log(2037 - this.birthYear)
+    // }
+}
+
+const alex = new Person('Alex', 1986)
+
+// 1. New {} is created
+// 2. Function is called, this = {}
+// 3. {} linked to protoype
+// 4. function automatically returns {}
+
+const annie = new Person('Annie', 1984)
+const tom = new Person('Tom', 2020)
+
+console.log(annie, tom)
+
+const jay = 'Jay'
+console.log(annie instanceof Person) // true
+console.log(jay instanceof Person) // false
+
+```
+
+❗ constructor names always start with a capital letter.
