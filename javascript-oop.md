@@ -32,7 +32,7 @@ The 4 fundamental principles of OOP: Abstraction, Encapsulation, Inheritance and
 --> A child class can overwrite a method it inherited from a parent class.
 
 
-## Prototypes
+# Prototypes
 
 All objects in JS are linked to a prototype object.
 
@@ -143,3 +143,42 @@ You can go up in the prototype chain by doing this:
     console.log(alex.__proto__.__proto__) // will return the prototype of the object prototype
     console.log(alex.__proto__.__proto__.__proto__) // will return null
 ```
+
+# Classes
+
+```js
+    // class expression
+    const PersonCl = class {
+        // etc
+    }
+
+    // class declaration
+    class PersonCl {
+        constructor(fistName, birthYear) {
+            this.firstName = firstName
+            this.birthYear = birthYear
+        }
+        //Methods goes outside of the constructor block and will be added to prototype property of the PersonCl class
+        calcAge() {
+            console.log(2021 - this.birthYear)
+        }
+    }
+
+    const jessica = new PerconCl('Jessica', 1996)
+
+    console.log(jessica) // will return the PersonCl instance/object with Jessica
+    jessica.calcAge() // 25
+
+    console.log(jessica.__proto__ === PersonCl.__proto__) // true
+
+    PersonCl.prototype.greet = function() {
+        console.log(`Hey ${this.firstName}!`)
+    } // Note that this method can also be added in the PersonCl class directly instead
+    jessica.greet() // Hey Jessica!
+
+```
+
+❗ Classes are NOT hoisted
+❗ Classes are first class citized
+❗ Classes are executed in strict mode
+
