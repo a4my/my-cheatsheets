@@ -182,3 +182,61 @@ You can go up in the prototype chain by doing this:
 ❗ Classes are first class citized
 ❗ Classes are executed in strict mode
 
+
+# Setters and Getters
+
+```js
+    const amount = {
+        owner: 'Alex',
+        movements: [200, 53, 120, 300],
+
+        get latest() {
+            return this.movements.slice(-1).pop()
+        }
+
+        set latest(mov) {
+            this.movements.push(mov)
+        }
+    }
+
+    console.log(account.latest) //300
+
+    account.latest = 50
+    console.log(account.latest) // [200, 53, 120, 300, 50]
+```
+
+❗ set needs at least 1 parameter
+
+
+```js
+    class PersonCl {
+        constructor(fullName, birthYear) {
+            this.fullName = fullName
+            this.birthYear = birthYear
+        }
+        
+        calcAge() {
+            console.log(2021 - this.birthYear)
+        }
+
+        get age() {
+            return 2021 - this.birthYear
+        }
+
+        // Set a property that already exists
+        set fullName(name) {
+            if(name.includes(' ')) this._fullName = name
+            else alert(`${name} is not a full name!`)
+        }
+
+        get fullName() {
+            return this._fullname
+        }
+    }
+
+    console.log(jessica.age) // 25
+
+    const jessica = new PerconCl('Jessica Davis', 1996)
+```
+
+❗ Note the _ before fullName, this is to create a new variable to avoid naming conflicts (fullName has already been declared as a class parameter)
