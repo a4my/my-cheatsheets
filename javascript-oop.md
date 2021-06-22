@@ -36,20 +36,23 @@ The 4 fundamental principles of OOP: Abstraction, Encapsulation, Inheritance and
 
 All objects in JS are linked to a prototype object.
 
-The prototype contains methods (behavior) that are accssible to all objects linked to that prototype. Behavior is delegated to the linked prototype object.
+The prototype contains methods (behavior) that are accessible to all objects linked to that prototype. Behavior is delegated to the linked prototype object.
 
 
 ## How to implement prototypes?
 
 ### Constructor functions
 
-• Technique to creae objects from a function
+•Technique to create objects from a function
+
 • This is how built-in objects like arrays, maps or sets are actually implemented
 
 ### ES6 Classes
 
 • Modern alternative to constructor function syntax
+
 • 'Syntactic sugar': behind the scenes, ES6 classes work exactly like constructor functions
+
 • ES6 classes do not behave like classes in classical OOP
 
 ### Object.create()
@@ -130,4 +133,13 @@ it will return the constructor, the functions and properties of Person
 
     console.log(tom.hasOwnProperty('firstName')) // true
     console.log(tom.hasOwnProperty('species')) // false
+```
+
+You can go up in the prototype chain by doing this:
+
+```js
+    console.log(alex.__proto__)
+    //Object.prototype (top of prototype chain)
+    console.log(alex.__proto__.__proto__) // will return the prototype of the object prototype
+    console.log(alex.__proto__.__proto__.__proto__) // will return null
 ```
