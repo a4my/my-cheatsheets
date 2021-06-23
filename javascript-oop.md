@@ -314,3 +314,56 @@ we can then use the prototype above to easily create new objects:
     sarah.init('Sarah', 1986)
     sarah.calcAge()
 ```
+
+
+# Inheritance between classes
+
+```js
+    const Student = function(firstName, birthYear, course) {
+        this.firstName = firstName
+        this.birthYear = birthYear
+        this.course = course
+    } 
+
+    Student.prototype.introduce = function() {
+        console.log(`My name is ${this.firstName} and I study ${this.course}`)
+    }
+
+    const mike = new Student('Mike', 2000, 'Computer Science')
+    mike.introduce()
+```
+
+The Student Object can inherit the properties from another object:
+
+```js
+    const Person = function(firstName, birthYear) {
+        this.firstName = firstName
+        this.birthYear = birthYear
+    }
+
+    const Student = function(firstName, birthYear, course) {
+        Person.call(this, firstName, birthYear)
+        this.course = course
+    } 
+
+```
+
+To create a connection manually using Object.create():
+
+```js
+
+    const Student = function(firstName, birthYear, course) {
+        Person.call(this, firstName, birthYear)
+        this.course = course
+    } 
+
+    Student.prototype = Object.create(Person.prototype) // Manual connection, needs to be added here, before adding methods to the prototype
+
+    Student.prototype.introduce = function() {
+            console.log(`My name is ${this.firstName} and I study ${this.course}`)
+        }
+
+    const mike = new Student('Mike', 2000, 'Computer Science')
+    mike.introduce()
+    mike.calcAge()
+```
