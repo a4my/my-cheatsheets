@@ -408,3 +408,106 @@ To create a connection manually between the prototypes using Object.create():
     martha.calcAge()
     martha.greet()
 ```
+
+## Using Object.create()
+
+```js
+    const PersonProto = {
+        calcAge() {
+            console.log(2021 - this.birthYear)
+        }
+
+        init(firstName, birthYear) {
+            this.firstName = firstName 
+            this.birthYear = birthYear 
+        }
+    }
+
+    const steven = Object.create(personProto)
+
+    const StudentProto = Object.create(PersonProto)
+    StudentProto.init = function(firstName, birthYear, course) {
+        PersonProto.init.call(this, firstName, birthYear)
+        this.course = course
+    }
+
+    StudentProto.introduce = function() {
+        console.log(`My name is ${this.firstName} and I study ${this.course}`)
+    }
+
+    const jay = Object.create(StudentProto)
+    jay.init('Jay', 2010, 'Computer Science')
+    jay.introduce()
+    jay.calcAge()
+```
+# Encapsulation
+
+Means some methods and properties are kept unaccessible from outside the class (ie PIN number)
+
+```js
+    class Account {
+        constructor(owner, currency, pin) {
+            this.owner = owner
+            this.currency = currency
+            // Protected property
+            this._pin = pin
+            this._movements = []
+            this.locale = navigator.language
+        }
+
+        // Public interface
+        getMovements() {
+            return this._movements
+        }
+    }
+
+    console.log(acc.getMovements()) // will return the movements array, everyone can see them but cannot overwrite or set the movements
+```
+
+❗ It's a programming standard to add an uppercase in front of a property to declare a protected property that should'nt be accesible from outside the class 
+
+
+## Private fields and methods
+
+### Public fields
+
+```js
+    class Account {
+        // Public fields (instances)
+        locale = navigator.language
+        _movements = []
+
+        constructor(owner, currency, pin) {
+            this.owner = owner
+            this.currency = currency
+            // Protected property
+            this._pin = pin
+            // this._movements = []
+            // this.locale = navigator.language
+        }
+```
+
+### Private fields
+
+```js
+    class Account {
+        // Private fields
+        #movements = []
+        #pin; 
+
+        constructor(owner, currency, pin) {
+            this.owner = owner
+            this.currency = currency
+            // Protected property
+            // this._pin = pin
+            // this._movements = []
+            this.locale = navigator.language
+       }
+
+        getMovements() {
+            return this.#movements
+        }
+    }
+
+    console.log(acc1.#movements) // will return a private field error
+```
