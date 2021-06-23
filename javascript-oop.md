@@ -240,3 +240,77 @@ You can go up in the prototype chain by doing this:
 ```
 
 ❗ Note the _ before fullName, this is to create a new variable to avoid naming conflicts (fullName has already been declared as a class parameter)
+
+
+# Static method
+
+Not available on instances methods
+
+```js
+    class PersonCl {
+        constructor(fullName, birthYear) {
+            this.fullName = fullName
+            this.birthYear = birthYear
+        }
+        
+        // Instance method
+        calcAge() {
+            console.log(2021 - this.birthYear)
+        }
+
+        get age() {
+            return 2021 - this.birthYear
+        }
+
+        // Set a property that already exists
+        set fullName(name) {
+            if(name.includes(' ')) this._fullName = name
+            else alert(`${name} is not a full name!`)
+        }
+
+        get fullName() {
+            return this._fullname
+        }
+
+        // Static method
+        static hey() {
+            console.log('Hey there ✌')
+        }
+    }
+
+    console.log(jessica.age) // 25
+
+    const jessica = new PerconCl('Jessica Davis', 1996)
+```
+
+
+# Object.create
+
+Sets a prototype object to any other object
+
+```js
+    const PersonProto = {
+        calcAge() {
+            console.log(2021 - this.birthYear)
+        }
+
+        init(firstName, birthYear) {
+            this.firstName = firstName
+            this.birthYear = birthYear
+        }
+    }
+
+    const steven = Object.create(PersonProto)
+    console.log(steven) // will return the object but with no data
+    steven.name = 'Steven' // will assign the name
+    steven.birthYear = 2002 // will assign the birth year
+    steven.calcAge() // 19
+```
+
+we can then use the prototype above to easily create new objects:
+
+```js
+    const sarah = Object.create(PersonProto)
+    sarah.init('Sarah', 1986)
+    sarah.calcAge()
+```
