@@ -318,6 +318,8 @@ we can then use the prototype above to easily create new objects:
 
 # Inheritance between classes
 
+## Using constructor function
+
 ```js
     const Student = function(firstName, birthYear, course) {
         this.firstName = firstName
@@ -326,7 +328,7 @@ we can then use the prototype above to easily create new objects:
     } 
 
     Student.prototype.introduce = function() {
-        console.log(`My name is ${this.firstName} and I study ${this.course}`)
+        console.log(`My name is ${this.firstName} and I study ${this.cours}`)
     }
 
     const mike = new Student('Mike', 2000, 'Computer Science')
@@ -348,7 +350,7 @@ The Student Object can inherit the properties from another object:
 
 ```
 
-To create a connection manually using Object.create():
+To create a connection manually between the prototypes using Object.create():
 
 ```js
 
@@ -366,4 +368,43 @@ To create a connection manually using Object.create():
     const mike = new Student('Mike', 2000, 'Computer Science')
     mike.introduce()
     mike.calcAge()
+```
+
+
+## Using ES6 classes
+
+```js
+    class Student extends PersonCl {
+        constructor(fullName, birthYear, course) {
+        // Student.prototype = Object.create(Person.prototype) // No need to link the prototypes manually.
+        super(fullName, birthYear) // Needs to happens first in the lock !
+        }
+    }
+
+    const martha = new Student('Martha Jones', 2012)
+    console.log(martha) // will return the object even if the constructor block above is empty
+```
+
+❗ The super() needs to happens first in the lock !
+
+```js
+    class Student extends PersonCl {
+        constructor(fullName, birthYear, course) {
+        super(fullName, birthYear) 
+        this.course = course
+        }
+
+        introduce() {
+            console.log(`My name is ${this.firstName} and I study ${this.cours}`)
+        }
+
+        calcAge() { // will overwrite the first calcAge function
+            console.log(`I'm ${2021 - this.birthYear} years old but as a student I feel more like ${2021 - this.birthYear + 10}`)
+        }
+    }
+
+    const martha = new Student('Martha Jones', 2012, 'Computer Science')
+    martha.introduce()
+    martha.calcAge()
+    martha.greet()
 ```
