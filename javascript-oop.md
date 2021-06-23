@@ -600,3 +600,106 @@ Unless you add 'return this' into the methods:
     console.log(acc1.getMovements()) // will return the methods chain with the movements array updated
 
 ```
+
+
+# ES6 classes overview
+
+```js
+class Student extends Person {
+
+}
+```
+
+Student = Child class
+extends = Inheritance between classes, automatically sets prototype
+Person = Parent class
+
+
+```js
+class Student extends Person {
+    university= 'University of Paris'
+    #studyHours = 260
+    static numSubjects = 10
+}
+```
+
+university = declared before the constructor function is called the public field, similar to property, available on every object created by this class, 
+
+#studyhours / #course = not accessible outside of the class, perfect to implement data privacy and encapsulation
+
+static numSubjects = properties only available on the class
+
+
+```js
+class Student extends Person {
+    university= 'University of Paris'
+    #studyHours = 260
+    static numSubjects = 10
+
+    constructor(fullName, birthYear, startYear, course) {
+        super(fullName, birtYear);
+        this.startYear = startYear
+        this.course = course
+    }
+}
+```
+
+constructor = constructor method, automatically called by the new operator when we created a new object or new class, mandatory in regular classes
+
+super = call to parent class, necessary when using extends and needs to happen before continuing with the rest of the block
+
+this.startYear = properties unique to the object, unlike the fields that are avaiblable to every objects
+
+this.#course = redefining private field of #course
+
+
+```js
+class Student extends Person {
+    university= 'University of Paris'
+    #studyHours = 260
+    #course
+    static numSubjects = 10
+
+    constructor(fullName, birthYear, startYear, course) {
+        super(fullName, birtYear);
+        this.startYear = startYear
+        this.#course = course
+    }
+
+    // Public method
+    introduce() {
+        console.log(`I study ${this.#course} at ${this.university}`)
+    }
+
+    // Referencing private field and method
+    study(h) {
+        this.#makeCoffee()
+        this.#studyHours += h
+        }
+    }
+
+    // Private method (might not yet work)
+    #makeCoffee() {
+        return 'Here is a coffee for you'
+    }
+
+    // Getter method, get a value out of an object by simply writing a property instead of a method
+    get testScore() {
+        return this._testScore
+    }
+
+    // Setter method, set a value out of an object by simply writing a property instead of a method, use an uppercase to create a method with a property name already used
+    set testScore(score) {
+        this._testScore = score < 20 ? score : 0
+    }
+
+    // Static method, available only on the class, and cannot access the instances properties nor the methods
+    static printCurriculum() {
+        console.log(`There are ${this.numSubjects} subjects`)
+    }
+}
+
+// Creating a new object using the new operator
+const student = new Student('Jonas', 2020, 2037, 'Medicine')
+```
+
