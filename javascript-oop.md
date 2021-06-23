@@ -554,3 +554,49 @@ Means some methods and properties are kept unaccessible from outside the class (
 
 ❗ Private methods do not work on all browsers yet.
 
+### Chaining methods
+
+Doing the following chain won't work:
+
+```js
+    acc1.deposit(300).deposit(500).withdraw(35).requestLoan(2500).withdraw(4000)
+    console.log(acc1.getMovements())
+```
+
+Unless you add 'return this' into the methods:
+
+```js
+    class Account {
+        constructor(owner, currency, pin) {
+            this.owner = owner
+            this.currency = currency
+            this._pin = pin
+            this._movements = []
+            this.locale = navigator.language
+        }
+
+        getMovements() {
+            return this._movements
+        }
+
+        deposit(val) {
+            this.movements.push(val)
+            return this
+        }
+
+        withdraw(val) {
+            this.deposit(-val)
+            return this
+        }
+
+        requestLoan(val) {
+            this.deposit(val)
+            console.log('Loan approved')
+            return this
+        }
+    }
+
+    acc1.deposit(300).deposit(500).withdraw(35).requestLoan(2500).withdraw(4000)
+    console.log(acc1.getMovements()) // will return the methods chain with the movements array updated
+
+```
