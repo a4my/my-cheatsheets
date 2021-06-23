@@ -511,3 +511,46 @@ Means some methods and properties are kept unaccessible from outside the class (
 
     console.log(acc1.#movements) // will return a private field error
 ```
+
+### Public methods
+
+```js
+    class Account {
+        constructor(owner, currency, pin) {
+            this.owner = owner
+            this.currency = currency
+            Protected property
+            this.pin = pin
+            this.movements = []
+            this.locale = navigator.language
+       }
+
+        // Public methods
+        getMovements() {
+            return this.movements
+        }
+    }
+```
+
+### Private methods
+
+```js
+    class Account {
+        constructor(owner, currency, pin) {
+            this.owner = owner
+            this.currency = currency
+            Protected property
+            this.pin = pin
+            this.movements = []
+            this.locale = navigator.language
+       }
+
+        // Public methods
+        #approveLoan(val) {
+            return true
+        }
+    }
+```
+
+❗ Private methods do not work on all browsers yet.
+
