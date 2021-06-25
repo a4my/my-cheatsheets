@@ -27,3 +27,78 @@ XML is a data format which is no longer used, instead we now use JSON data forma
 # API
 
 Stands for Application Programming Interface. Piece of software that can be used by another piece of software in order to allow applications to talk to each other and exchange information.
+
+
+# AJAX calls
+
+# Old school way
+
+```js
+    const request = new XMLHttpRequest()
+    request.open('GET', `https://restcountries.eu/rest/v2/name/${country}`)
+    request.send()
+
+    request.addEventListener('load', function(){
+        const [data] = JSON.parse(this.responseText)
+        console.log(data)
+
+        const html = `
+            <article class="country">
+                <img class="country__img" src="${data.flag}" />
+                <div class="country__data">
+                    <h3 class="country__name">${data.name}</h3>
+                    <h4 class="country__region">${data.region}</h4>
+                    <p class="country__row"><span>👫</span>${(+data.population / 1000000).toFixed(1)} people</p>
+                    <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+                    <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+                </div>
+            </article>
+        `
+
+    countriesContainer.insertAdjacentHTML('beforeend', html)
+    countriesContainer.style.opacity = 1
+    })
+
+    getCountryData('france')
+    getCountryData('usa')
+    getCountryData('gb')
+```
+
+## Modern way (promises)
+
+Promise: an object that is used as a placeholder for the future result of an asynchronous operation.
+
+It is a container for an asynchronously delivered value.
+
+A container for a future value.
+
+```js
+    const renderCountry = function(data, className = '') {
+    const html = `
+        <article class="country ${className}">
+            <img class="country__img" src="${data.flag}" />
+            <div class="country__data">
+                <h3 class="country__name">${data.name}</h3>
+                <h4 class="country__region">${data.region}</h4>
+                <p class="country__row"><span>👫</span>${(+data.population / 1000000).toFixed(1)} people</p>
+                <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+                <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+            </div>
+        </article>
+    `
+
+    countriesContainer.insertAdjacentHTML('beforeend', html)
+    countriesContainer.style.opacity = 1
+    }
+
+
+
+    const getCountryData = function (country) {
+        fetch(`https://restcountries.eu/rest/v2/name/${country}`) // fetch something
+        .then((response) => response.json()) // then we get a response which gets transformed into JSON
+        .then((data) => renderCountry(data[0])) // then we use the data to render the DOM
+    }
+
+    getCountryData('romania')
+
+```
