@@ -126,3 +126,72 @@ A container for a future value.
 
     getCountryData('france')    
 ```
+
+
+## Handling rejected promises
+
+Add a catch method at the end of the promise chain:
+
+```js
+    const getCountryData = function (country) {
+        //Country 1 
+        fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+        .then((response) => response.json())
+        .then((data) => {
+            renderCountry(data[0])
+            const neighbour = data[0].borders[0]
+
+            if(!neighbour) return 
+
+            // Country 2
+            return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`)
+        })
+        .then(response => response.json())
+        .then(data => renderCountry(data, 'neighbour'))
+        .catch(err => {
+            console.error(`${err} 💥`)
+            errorRender(`Something went wrong 💥💥💥 ${err.message}. Try again`)
+        })
+    }
+
+    getCountryData('france')
+```
+
+and create an error function :
+
+```js
+    const errorRender = function(msg) {
+        countriesContainer.insertAdjacentText('beforeend', msg)
+        countriesContainer.style.opacity = 1
+    }
+```
+
+you can also add a .finally() method at the very end of the chain. used for something that always need to happen no matter the result of the promise:
+
+```js
+    const getCountryData = function (country) {
+        //Country 1 
+        fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+        .then((response) => response.json())
+        .then((data) => {
+            renderCountry(data[0])
+            const neighbour = data[0].borders[0]
+
+            if(!neighbour) return 
+
+            // Country 2
+            return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`)
+        })
+        .then(response => response.json())
+        .then(data => renderCountry(data, 'neighbour'))
+        .catch(err => {
+            console.error(`${err} 💥`)
+            errorRender(`Something went wrong 💥💥💥 ${err.message}. Try again`)
+        })
+        .finally(() => {
+            countriesContainer.style.opacity = 1
+        })
+    }
+
+    getCountryData('france')
+```
