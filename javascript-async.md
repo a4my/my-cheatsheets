@@ -12,7 +12,7 @@ intro: |
 
 👎 Long-running operations block code execution
 
-• Asynchronous code is executed fter a task that runs in the background finishes. Async is non-blocking and the execution doesn't wait for an async task to finish its work. ie setTimeout()
+• Asynchronous code is executed after a task that runs in the background finishes. Async is non-blocking and the execution doesn't wait for an async task to finish its work. ie setTimeout()
 
 ❗ Callback functions alone and event listeners do NOT make code asynchronous!
 
@@ -235,3 +235,23 @@ you can also add a .finally() method at the very end of the chain. used for some
 
     getCountryData('france')
 ```
+
+
+# Promise
+
+```js
+    const lotteryPromise = new Promise(function(resolve, reject) {
+        console.log('Lottery draw is happening 🔮')
+        setTimeout(function() {
+            if(Math.random() >= 0.5) {
+                resolve('You WIN! 💰')
+            } else {
+                reject('You lost your money...💩')
+            }
+        })
+    })
+
+    letteryPromise.then(res => console.log(res)).catch(err => console.log(err))
+    // will randomly return either the resolve or reject outcome depending on the random number
+```
+
