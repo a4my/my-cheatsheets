@@ -246,12 +246,19 @@ you can also add a .finally() method at the very end of the chain. used for some
             if(Math.random() >= 0.5) {
                 resolve('You WIN! 💰')
             } else {
-                reject('You lost your money...💩')
+                reject(new Error('You lost your money...💩'))
             }
-        })
+        }, 2000)
     })
 
     letteryPromise.then(res => console.log(res)).catch(err => console.log(err))
     // will randomly return either the resolve or reject outcome depending on the random number
+
+    // Promisifying setTimeout
+    const wait = function(seconds) {
+        return new Promise(function(resolve) {
+            
+        })
+    }
 ```
 
