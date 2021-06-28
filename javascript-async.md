@@ -449,4 +449,49 @@ Using Promise.all() will run all 3 promises at the same time in parallel:
 
     get3Countries('portugal', 'canada', 'tanzania')
 ```
-❗ Promise.all() receives an array and returns an array
+❗ Promise.all() receives an array of promises and returns an array of promises, will sortcuts if a promise is rejected though.
+
+## Other combinator function: race, allSettled and any
+
+### Promise.race
+
+The promise returned by Promise.race() is settled as soon as one of the input promises settles
+
+```js
+    (async function() {
+        const res = await Promise.race([
+            getJSON(`https://restcountries.eu/rest/v2/name/italy`),
+            getJSON(`https://restcountries.eu/rest/v2/name/egypt`),
+            getJSON(`https://restcountries.eu/rest/v2/name/mexico`)
+        ])
+    })
+
+    conosle.log(res[0])
+```
+
+All 3 promises will race against each other and if the winning promise is a fulfilled promise, then the fulfillment value is going to be the fulfillment value of the winning promise. Therefore, only the winning promise will be returned as an array.
+
+
+### Promise.allSettled
+
+It takes in an array of all the promises and will return an array of all the settled promises (rejected or not). Never shortcuts the results, it will return the results of all the promises.
+
+```js
+    Promise.allSettled([
+        Promise.resolve('Succes')
+        Promise.reject('Error')
+        Promise.resolve('Another Succes')
+    ]).then(res => console.log(res[0]))
+```
+
+### Promise.any (ES2021)
+
+Similar to Promise.race(), with the difference that rejected promises are ignored. Therefore the result of Promise.any() will always be a fulfilled promise unless all of them get rejected.
+
+```js
+    Promise.any([
+        Promise.resolve('Succes')
+        Promise.reject('Error')
+        Promise.resolve('Another Succes')
+    ]).then(res => console.log(res[0]))
+```
