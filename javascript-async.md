@@ -343,7 +343,47 @@ is the modern way of doing :
         // Country data
         const res = await fetch(`https://restcountries.eu/rest/v2/name/${dataGeo.country}`)
         const data = await res.json()
+        renderCountry(data[0])
     }
 
     whereAmI()
 ```
+
+
+## Try / Catch
+
+
+```js
+    try {
+        let y = 1
+        const x =2
+        x =3 // will return error, cannot assign to const variable
+    } catch(err) {
+        alert(err.message)
+    }
+
+```
+
+```js
+    const whereAmI = async function() {
+        try{
+            // Geolocation
+            const pos = await getPosition()
+            const { latitude: lat, longitude: lng} = pos.coords
+            // Reverse geocoding
+            const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+            const dataGeo = await resGeo.json()
+            // Country data
+            const res = await fetch(`https://restcountries.eu/rest/v2/name/${dataGeo.country}`)
+            const data = await res.json()
+            renderCountry(data[0])
+        } catch(err) {
+            console.error(err)
+            renderError(`Something went wrong 💥 ${err.message}`)
+        }
+    }
+
+    whereAmI()
+```
+
+❗ Remember that getPosition, renderCountry, whereAmI and renderError were created before in the lesson
