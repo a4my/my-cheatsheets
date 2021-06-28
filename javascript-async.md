@@ -253,12 +253,62 @@ you can also add a .finally() method at the very end of the chain. used for some
 
     letteryPromise.then(res => console.log(res)).catch(err => console.log(err))
     // will randomly return either the resolve or reject outcome depending on the random number
+```
 
-    // Promisifying setTimeout
+Promisifying means to convert callback based asynchronous behaviour to promise based:
+
+```js
+    // Promisifying setTimeout function
     const wait = function(seconds) {
         return new Promise(function(resolve) {
-            
+            setTimeout(resolve, seconds * 1000)
         })
     }
+
+    wait(2).then(() => {
+        console.log('I waited for 2 seconds')
+        return wait(1)
+    }).then(() => console.log('I waited for 3 seconds'))
+```
+
+❗ No reject function because t is impossible for the timer to fail 😉
+
+
+## Promisifying the geolocation API
+
+Let's take the following example:
+
+```js
+    navigator.geolocation.getCurrentPosition(
+        position => console.log(position),
+        err => console.error(err)
+    )
+
+    console.log('Getting position')
+```
+and promisify it :
+
+```js
+    const getPosition = function() {
+        return new Promise(function(resolve, reject) {
+            navigator.geolocation.getCurrentPosition(
+            position => resolve(position),
+            err => reject(err)
+            )
+        })
+    }
+```
+
+which can also be written this way:
+
+```js
+    const getPosition = function() {
+        return new Promise(function(resolve, reject) {
+            navigator.geolocation.getCurrentPosition(resolve, reject)
+            )
+        })
+    }
+
+    getPosition().then(pos => console.log(pos))
 ```
 
