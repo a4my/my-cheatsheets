@@ -20,7 +20,7 @@ intro: |
 
 Stands for Asynchronous JavaScript And XML.
 
-Allows us to communicate with remote web servers in an asynchronous way. With AJAX calls we can request date from web servers dynamically.
+Allows us to communicate with remote web servers in an asynchronous way. With AJAX calls we can request data from web servers dynamically.
 
 XML is a data format which is no longer used, instead we now use JSON data format.
 
@@ -74,21 +74,21 @@ A container for a future value.
 
 ```js
     const renderCountry = function(data, className = '') {
-    const html = `
-        <article class="country ${className}">
-            <img class="country__img" src="${data.flag}" />
-            <div class="country__data">
-                <h3 class="country__name">${data.name}</h3>
-                <h4 class="country__region">${data.region}</h4>
-                <p class="country__row"><span>👫</span>${(+data.population / 1000000).toFixed(1)} people</p>
-                <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
-                <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
-            </div>
-        </article>
-    `
+        const html = `
+            <article class="country ${className}">
+                <img class="country__img" src="${data.flag}" />
+                <div class="country__data">
+                    <h3 class="country__name">${data.name}</h3>
+                    <h4 class="country__region">${data.region}</h4>
+                    <p class="country__row"><span>👫</span>${(+data.population / 1000000).toFixed(1)} people</p>
+                    <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+                    <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+                </div>
+            </article>
+        `
 
-    countriesContainer.insertAdjacentHTML('beforeend', html)
-    countriesContainer.style.opacity = 1
+        countriesContainer.insertAdjacentHTML('beforeend', html)
+        countriesContainer.style.opacity = 1
     }
 
 
@@ -237,7 +237,7 @@ you can also add a .finally() method at the very end of the chain. used for some
 ```
 
 
-# Promise
+# Building a simple promise
 
 ```js
     const lotteryPromise = new Promise(function(resolve, reject) {
