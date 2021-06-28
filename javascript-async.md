@@ -312,3 +312,38 @@ which can also be written this way:
     getPosition().then(pos => console.log(pos))
 ```
 
+# Consuming promises with Async / Await (modern way)
+
+```js
+    const whereAmI = async function(country) {
+        const res = await fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+        const data = await res.json()
+    }
+```
+is the modern way of doing :
+
+```js
+    const whereAmI = async function(country) {
+        fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
+```
+
+--> consuming the promise: 
+
+```js
+    const whereAmI = async function() {
+        // Geolocation
+        const pos = await getPosition()
+        const { latitude: lat, longitude: lng} = pos.coords
+        // Reverse geocoding
+        const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+        const dataGeo = await resGeo.json()
+        // Country data
+        const res = await fetch(`https://restcountries.eu/rest/v2/name/${dataGeo.country}`)
+        const data = await res.json()
+    }
+
+    whereAmI()
+```
