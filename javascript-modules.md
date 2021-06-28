@@ -236,5 +236,32 @@ and run the command:
 ```
 
 
+## Babel
 
+Babel is used to transpile our modern code into code that can be read by old browsers.
 
+### polifying Promises
+But Babel cannot transpile some of the ES6 concepts like promises, for that, you'll need to add a polifier library such as core-js which you can install:
+
+```
+    npm i core-js
+```
+
+and add in your imports:
+
+```js
+    import 'core-js/stable'
+```
+
+### polifying async/await
+
+Install:
+
+```
+    npm i regenerator-runtime
+```
+Then add import:
+
+```js
+    import 'regenerator-runtime/runtime'
+```
