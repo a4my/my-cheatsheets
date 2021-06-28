@@ -155,3 +155,86 @@ Let's say you copied your project onto another computer and don't have the node_
 ```
  npm install // or npm i
 ```
+
+## Parcel (bundler tool)
+
+### Install Parcel
+
+```
+    npm i parcel --save-dev
+```
+
+A dev dependency is a tool that we need to build our application but it's not a dependcy that we actually include in our code. 
+
+Once installed, Parcel will appear in the dev dependency list in the package.json file.
+
+
+### using npx to use Parcel
+
+```
+    npx parcel index.html
+```
+
+To set up the entry point (index.html where the js scripts are linked up). I
+
+It will bundle index.html, script.js and shoppingCart.js
+
+Parcel will aslo open a new local live server to work on our project. the link will be in the command line.
+
+💢 If you encounter a bug while installing Parcel try :
+
+```
+    sudo npx index.html
+```
+
+💢 Also, make sure your scripts are not module types in your index.html file
+
+
+Once Parcel is installed, it creates a dist folder where the bundle of our files is.
+
+Parcel will also allow you to write the your imports by only pointing at the name of the file:
+
+```js
+    import cloneDeep from './node_modules/lodash-es/cloneDeep.js'
+
+    // can be written this way with Parcel:
+
+    import cloneDeep from 'lodash-es'
+
+```
+
+
+### using npm scripts to use Parcel
+
+You can simply add a script onto the scripts list of the package.json file:
+
+```
+    "scripts": {
+        "start": "parcel index.html"
+    },
+```
+
+then run the following command in the terminal:
+
+```
+    npm run start
+```
+
+to build the bundle you then need to add another script onto the list:
+
+```
+    "scripts": {
+        "start": "parcel index.html",
+        "build": "parcel build index.html"
+    },
+```
+
+and run the command:
+
+```
+    npm run build
+```
+
+
+
+
