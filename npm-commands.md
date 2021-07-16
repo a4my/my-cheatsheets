@@ -23,3 +23,21 @@ permalink: /npm/
 * `npm adduser username` - creates an account to npmjs.org2;
 * `npm whoami` - displays details of your public npm’s profile (you must create an account using the previous command;
 * `npm publish` - publishes a module into npmjs.org (it’s necessary to have an active account first);
+
+## by Brad Schiff
+
+`nmpm init -y` to create a package.json file
+`npm install express` to download Express
+`node app` to run our script called app
+
+in our script called app.js:
+```js
+    const express = require('express') // will link to express
+    const app = express() // will finally call express
+    
+    app.get('/', function(req,res) {
+        res.send("Welcome to our new app")
+    })
+
+    app.listen(3000) // will use the 3000 local host to run our app
+```
