@@ -41,3 +41,8 @@ in our script called app.js:
 
     app.listen(3000) // will use the 3000 local host to run our app
 ```
+
+`npm install ejs` to download ejs
+`npm install nodemon` to download nodemon which automatically refreshes the page localhost
+
+add `"watch": "nodemon app"` in the package.json and run `npm run watch` so nodemon watches for changes
