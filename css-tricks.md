@@ -49,3 +49,14 @@ backdrop-filter: blur(6px);
 box-shadow: 13px 13px 20px var(--shadow--1), 
             -13px -13px 20px var(--shadow--2);
 ```
+
+### Blending images 
+
+```css
+    .portrait img.texture {
+    mix-blend-mode: multiply;
+    filter: contrast(1.2);
+}
+```
+
+❗ make sure to apply the above to the second picture.
