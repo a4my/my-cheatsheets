@@ -26,14 +26,16 @@ permalink: /npm/
 
 ## by Brad Schiff
 
-`nmpm init -y` to create a package.json file
+`npm init -y` to create a package.json file
 `npm install express` to download Express
 `node app` to run our script called app
 
 in our script called app.js:
 ```js
-    const express = require('express') // will link to express
-    const app = express() // will finally call express
+    let express = require('express') // will link to express
+    let app = express() // will finally call express
+
+    app.use(express.urlencoded({extended: false})) // Mandatory boilerplate, tells express to add all forms values to a body object and add the body object to the req object, by default Express doesn't do it automatically
     
     app.get('/', function(req,res) {
         res.send("Welcome to our new app")
