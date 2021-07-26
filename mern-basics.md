@@ -1,6 +1,6 @@
 ---
 title: MERN
-category: MERN
+category: MERN Basics
 updated: 2021-07-24
 intro: |
   A closer look to NPM / Express / Mongo DB / Axios
