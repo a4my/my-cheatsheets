@@ -3,7 +3,7 @@ title: MERN
 category: MERN
 updated: 2021-07-24
 intro: |
-  A closer look to NPM / Express / Mongo DB
+  A closer look to NPM / Express / Mongo DB / Axios
 ---
 
 ## Top NPM commands
@@ -57,12 +57,12 @@ add `"watch": "nodemon app"` in the package.json and run `npm run watch` so node
 `npm install mongodb` to download Mongo DB
 
 ```js
-  let mongodb = require('mongodb')
+  let MongoClient = require('mongodb').MongoClient
   let db;
 
   let connectionString = 'mongodb+srv://todoAppUser:<Fender666>@cluster0.wlxbg.mongodb.net/TodoApp?retryWrites=true&w=majority'
   
-  mongodb.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true}, function(err, client) {
+  MongoClient.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true}, function(err, client) {
       db = client.db()
       app.listen(3000)
   })
@@ -90,7 +90,7 @@ Create a sub-folder called 'public'in your app to include the browser.js file an
 Get the CDN link at https://github.com/axios/axios and paste it onto your server.js file:
 
 ```js
-              <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 ```
 
 Also add, the following line to your server.js script: 
@@ -100,3 +100,86 @@ Also add, the following line to your server.js script:
 ```
 
 This line tells Express to automatically take submitted form data and add it to a body object that lives on a request object for asynchronous request
+
+## Creating and updating an item into the database and on the frontend
+
+• Creating an item:
+
+```js
+app.post('/create-item', function(req, res) {
+    db.collection('items').insertOne({text: req.body.item}, function() {
+        res.redirect('/')
+    })
+})
+
+```
+
+• Updating an item:
+
+```js
+app.post('/update-item', function(req, res) {
+    db.collection('items').findOneAndUpdate({_id: new ObjectId(req.body.id)}, {$set: {text: req.body.text}}, function() {
+        res.send("Success")
+    })
+})
+```
+
+also add the following in your browser.js file:
+
+```js
+  document.addEventListener('click', function(e){
+    if(e.target.classList.contains('edit-me')) {
+        let userInput = prompt("Enter you desired new text", e.target.parentElement.parentElement.querySelector(".item-text").innerHTML)
+        if(userInput) {
+            axios.post('/update-item', {text: userInput, id: e.target.getAttribute("data-id")}).then(function() {
+                e.target.parentElement.parentElement.querySelector(".item-text").innerHTML = userInput
+                 
+            }).catch(function() {
+                console.log("Please try again later.")
+            })
+        }
+    }
+})
+```
+
+The above line of codes will allow you to edit an item of your to-do list when clicking on its edit button. The item will also appears in the prompt window's input.
+
+
+## Deleting an item from the database and the frontend
+
+```js
+  document.addEventListener('click', function(e){
+    //Delete feature
+    if(e.target.classList.contains('delete-me')) {
+        if(confirm("Do you really want to delete this item permanently?")) {
+            axios.post('/delete-item', {id: e.target.getAttribute("data-id")}).then(function() {
+                e.target.parentElement.parentElement.remove()
+            }).catch(function() {
+                console.log("Please try again later.")
+            })
+        }
+    }
+
+    // Update feature
+    if(e.target.classList.contains('edit-me')) {
+        let userInput = prompt("Enter you desired new text", e.target.parentElement.parentElement.querySelector(".item-text").innerHTML)
+        if(userInput) {
+            axios.post('/update-item', {text: userInput, id: e.target.getAttribute("data-id")}).then(function() {
+                e.target.parentElement.parentElement.querySelector(".item-text").innerHTML = userInput  
+            }).catch(function() {
+                console.log("Please try again later.")
+            })
+        }
+    }
+})
+```
+
+and add the following line of codes so axios can communicate with MongoDB and remove the item from the database:
+
+```js
+  app.post('/delete-item', function(req, res){
+    db.collection('items').deleteOne({_id: new ObjectId(req.body.id)}, function() {
+        res.send("Success")
+    })
+})
+```
