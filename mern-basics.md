@@ -16,8 +16,8 @@ intro: |
 
 in our script called app.js:
 ```js
-    let express = require('express') // will link to express
-    let app = express() // will finally call express
+    let express = require('express') // will import express
+    let app = express() // will call express
 
     app.use(express.urlencoded({extended: false})) // Mandatory boilerplate, tells express to add all forms values to a body object and add the body object to the req object, by default Express doesn't do it automatically
     
