@@ -17,6 +17,10 @@ Install express and import it to your app.js file as below:
     const express = require('express') // to import Express
     const app = express() // to use Express
 
+    app.use(express.urlencoded({extended: false}))
+    app.use(express.json())
+    // These 2 lines are mandatory and non-educational. They are only there to let Express accept the 2 common ways of receiving data, the traditional HTML form submit and sending over a bit of json data
+
     app.use(express.static('public')) // to let Express know to use the 'public' folder for extra css 
     app.set('views', 'views') // to set the views (or templates) configuration and point it to our 'views' folder.
     app.set('view engine', 'ejs') // to tell Express which engine we are using. In this app, our templates we'll be ejs files (ie: home-guest.ejs)
@@ -126,3 +130,32 @@ Let's try to create a function that render the page which should be render when 
 ```js
     router.post('/register', userController.register)
 ```
+
+
+## Setting up a DOTENV for password protection
+
+• Install the dotenv and mongodb package then crearte a db.js file.
+
+```js
+    const dotenv = require('dotenv')
+    dotenv.config()
+
+    const MongoClient = require('mongodb').MongoClient
+
+    MongoClient.connect(process.env.CONNECTIONSTRING, {useNewUrlParser: true, useUnifiedTopology: true}, function(err, client) {
+        module.exports = client.db()
+        const app = require('./app')
+        app.listen(process.env.PORT)
+    })
+```
+
+• Instead of creating a variable called connectionString with our username and password string from MongoDB, we can create a file called '.env' and write the following codes in it:
+
+```
+CONNECTIONSTRING=mongodb+srv://todoAppUser:Fender666@cluster0.wlxbg.mongodb.net/ComplexApp?retryWrites=true&w=majority
+PORT=3000
+```
+
+• Include the .env file onto your .gitignore file so you don't push it onto Github
+
+• You can then replace the connectionString by `process.env.CONNECTIONSTRING` and replace 3000 by `PORT` in your code connecting MongoDB to your app.
