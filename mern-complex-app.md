@@ -159,3 +159,24 @@ PORT=3000
 • Include the .env file onto your .gitignore file so you don't push it onto Github
 
 • You can then replace the connectionString by `process.env.CONNECTIONSTRING` and replace 3000 by `PORT` in your code connecting MongoDB to your app.
+
+
+## Hashing User Passwords
+
+• `npm install bcryptjs`
+• import bcryptjs into your User.js file
+• In your register function add the following code:
+
+```js
+    let salt = bcrypt.genSaltSync(10)
+    this.data.password = bcrypt.hashSync(this.data.password, salt)
+```
+
+• In your login function make sure to add the following code so you can log in to your app and match the hashed password:
+
+```js
+    if (attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)) {
+            resolve("Congrats!")
+        }
+```
+
