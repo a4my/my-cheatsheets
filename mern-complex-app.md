@@ -180,3 +180,51 @@ PORT=3000
         }
 ```
 
+## Identify or Trust a request / impementing sessions
+
+• `npm install express-session`
+• import express-session into your app.js file
+• configure the session by adding the following code in the app.js file:
+
+```js
+    let sessionOptions = session({
+        secret: "JavaScript is sooooo cool",
+        resave: false,
+        saveUninitialied: false,
+        cookie: {maxAge: 1000 * 60 * 60 * 24, httpOnly: true}
+    })
+
+    app.use(sessionOptions)
+```
+
+
+• `npm install connect-mongo`
+• in your app.js file, import this package this way:
+
+```js
+    const MongoStore = require('connect-mongo')(session)
+```
+
+
+## Add flash messages
+
+• `npm install connect-flash`
+• import connect-flash into your app.js file and add:
+
+```js
+    app.use(flash())
+```
+
+example
+```js
+    exports.mustBeLoggedIn = function(req, res, next) {
+    if(req.session.user) {
+        next()
+    } else {
+        req.flash("errors", "You must be logged in to perform that action.")
+        req.session.save(function() {
+        res.redirect('/')
+        })
+    }
+    }
+```
