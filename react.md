@@ -101,3 +101,134 @@ if (module.hot) {
 ```
 
 ✔ Note that the bundled.js does not appear in your files, this is because webpack keep it in memory and doesn't bother showing it to us until the final stage of bundling our app for deployment.
+
+# Creating reusable components
+
+## Component JS file
+
+• Create a `component` folder in your app
+• Create a file for your component ie `Header.js` (it's industry standard to capitalize the name of the component file)
+• Start your script with `3 mandatory elements`: importing react, your function and exporting component:
+
+```js
+    import React from "react"
+
+    function Header() {
+    return (
+
+    )
+    }
+
+    export default Header
+
+    //This is the boilerplate of every React component
+```
+
+• Finally enter your HTML markup inside the return of your function using the JSX syntax (which means some of the html classes needs to be renamedie class becomes className and autocomplete becomes autoComplete):
+
+```js
+import React from "react"
+
+function Header() {
+  return (
+    <header className="header-bar bg-primary mb-3">
+      <div className="container d-flex flex-column flex-md-row align-items-center p-3">
+        <h4 className="my-0 mr-md-auto font-weight-normal">
+          <a href="/" className="text-white">
+            {" "}
+            ComplexApp{" "}
+          </a>
+        </h4>
+        <form className="mb-0 pt-2 pt-md-0">
+          <div className="row align-items-center">
+            <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
+              <input name="username" className="form-control form-control-sm input-dark" type="text" placeholder="Username" autoComplete="off" />
+            </div>
+            <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
+              <input name="password" className="form-control form-control-sm input-dark" type="password" placeholder="Password" />
+            </div>
+            <div className="col-md-auto">
+              <button className="btn btn-success btn-sm">Sign In</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </header>
+  )
+}
+
+export default Header
+```
+
+## Using your component in your app
+
+• So far, this is how your Main.js file looks like:
+
+```js
+    import React from "React"
+    import ReactDOM from "react-dom"
+
+    function Main() {
+    return ()
+    }
+
+    ReactDOM.render(<Main />, document.querySelector("#app"))
+
+    if (module.hot) {
+    module.hot.accept()
+    }
+```
+
+• The 2 imports tells your Main.js file to use React and ReactDOM
+• The function called Main is what we are going to tell ReactDOM to render (ie html template components, etc)
+• The ReactDOM.render() function tells ReactDOM which function to render and where in the HTML markup (in this example in the div with the id of 'app')
+
+• To start using your React components, you need to import them onto your Main.js file:
+
+```js
+import Header from "./components/Header"
+import HomeGuest from "./components/HomeGuest"
+import Footer from "./components/Footer"
+```
+
+• Finally you must tell your function Main to use them and render them:
+
+```js
+function Main() {
+  return (
+    <>
+      <Header />
+      <HomeGuest />
+      <Footer />
+    </>
+  )
+}
+```
+
+• Your Main.js file should like this now:
+
+```js
+import React from "React"
+import ReactDOM from "react-dom"
+
+// Components
+import Header from "./components/Header"
+import HomeGuest from "./components/HomeGuest"
+import Footer from "./components/Footer"
+
+function Main() {
+  return (
+    <>
+      <Header />
+      <HomeGuest />
+      <Footer />
+    </>
+  )
+}
+
+ReactDOM.render(<Main />, document.querySelector("#app"))
+
+if (module.hot) {
+  module.hot.accept()
+}
+```
