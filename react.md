@@ -17,7 +17,7 @@ intro: |
 
 • Created an HTML file with an id div of `app`
 • Created a Main.js file and `make sure the language mode in VS code is Javascript React`
-• Add the following script in youor Main.js file:
+• Add the following script in your Main.js file:
 
 ```js
 import React from "React"
@@ -116,7 +116,7 @@ if (module.hot) {
     function Header() {
     return (
 
-    )
+      )
     }
 
     export default Header
@@ -124,10 +124,11 @@ if (module.hot) {
     //This is the boilerplate of every React component
 ```
 
-• Finally enter your HTML markup inside the return of your function using the JSX syntax (which means some of the html classes needs to be renamedie class becomes className and autocomplete becomes autoComplete):
+• Finally enter your HTML markup inside the return of your function using the JSX syntax (which means some of the html properties needs to be renamed ie class becomes className and autocomplete becomes autoComplete):
 
 ```js
 import React from "react"
+// Note that React DOM doesn't need to be imported like we did in the main script
 
 function Header() {
   return (
@@ -169,13 +170,13 @@ export default Header
     import ReactDOM from "react-dom"
 
     function Main() {
-    return ()
+      return ()
     }
 
     ReactDOM.render(<Main />, document.querySelector("#app"))
 
     if (module.hot) {
-    module.hot.accept()
+      module.hot.accept()
     }
 ```
 
@@ -232,3 +233,106 @@ if (module.hot) {
   module.hot.accept()
 }
 ```
+
+# Routing in React
+
+Now that we have installed and set up React and learn how to create reusable components with React, the next learning stage would be to set up a router to connect differents pages of your app with one another.
+
+## Setting up React Router DOM
+
+• `npm install react-router-dom` to download React Router DOM
+• For this particular package the import onto your Main.js file looks slightly different due to the destructuring we need to do with this package:
+
+```js
+import { BrowserRouter, Switch, Route } from "react-router-dom"
+```
+
+• BrowserRouter, Switch and Route are options that comes from React-Router-DOM and will help up to create routes within our app. These 3 options can be use like "html tags" within our Main function to create routes but also to create paths or keep components in our web browser components that have already been rendered and that won't need to be rendered again.
+
+• Remember our Main function?
+
+```js
+function Main() {
+  return (
+    <>
+      <Header />
+      <Terms />
+      <Footer />
+    </>
+  )
+}
+```
+
+• Now React Router DOM let us use the Main function this way to create a router:
+
+```js
+function Main() {
+  return (
+    <BrowserRouter>
+      <Header />
+      <Switch>
+        <Route path="/" exact>
+          <HomeGuest />
+        </Route>
+        <Route path="/about-us" exact>
+          <About />
+        </Route>
+        <Route path="/terms" exact>
+          <Terms />
+        </Route>
+      </Switch>
+      <Footer />
+    </BrowserRouter>
+  )
+}
+```
+
+• BrowserRouter represents the elements that are going to be rendered from our Main function.
+
+• The Header and Footer "tags" are components that only needs to be rendered once.
+
+• Switch regroups all the different components that are going to be switched to within the same page ie Home, About and Terms links that are at the bottom of the home page
+
+• Finally the route "tags" allow us to provide a URL path to these components ie ourApp/about
+
+## Converting html anchor tags to React links
+
+• If we look at the Footer component, we can see that we used an HTML mark up for the footer.
+
+```js
+import React from "react"
+import { Link } from "react-router-dom"
+
+function Footer() {
+  return (
+    <footer className="border-top text-center small text-muted py-3">
+      <p>
+        <a href="/" className="mx-1">
+          Home
+        </a>{" "}
+        |{" "}
+        <a className="mx-1" href="/about-us">
+          About Us
+        </a>{" "}
+        |{" "}
+        <a className="mx-1" href="/terms">
+          Terms
+        </a>
+      </p>
+      <p className="m-0">
+        Copyright &copy; 2020{" "}
+        <a href="/" className="text-muted">
+          ComplexApp
+        </a>
+        . All rights reserved.
+      </p>
+    </footer>
+  )
+}
+
+export default Footer
+```
+
+• However, React does not read HTML anchor tags and uses <Link> tags instead as opposed to <a> in html. So you need to manually swap the React tags so the Router can properly work
+
+• Also the `href` attribute needs to be changed to `to`
