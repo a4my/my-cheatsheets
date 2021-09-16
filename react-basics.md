@@ -336,3 +336,72 @@ export default Footer
 • However, React does not read HTML anchor tags and uses <Link> tags instead as opposed to <a> in html. So you need to manually swap the React tags so the Router can properly work
 
 • Also the `href` attribute needs to be changed to `to`
+
+# Composiiton & Page title switch
+
+A quick note about composiiotn and page title changing in the web browser when switching to a new link or new page.
+
+We created a Container component earlier that we used as a container div for the content of every page:
+
+```js
+import React, { useEffect } from "react"
+
+function Container(props) {
+  return <div className={"container py-md-5 " + (props.wide ? "" : "container--narrow")}>{props.children}</div>
+}
+
+export default Container
+```
+
+And we also replaced the html container div of our pages's content with this new React Container tag:
+
+```js
+function About() {
+  return (
+    <Container>
+      <h2>About Us</h2>
+      <p class="lead text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis dolorum labore quisquam vel id dicta fuga! Ducimus, quo. Dolore commodi aliquid error veritatis consequuntur, excepturi cumque fuga eum incidunt doloremque?</p>
+    </Container>
+  )
+}
+```
+
+In order to make the page title appear on the web browser and change when clicking onto a new link, we need to use composition and make some modifications to our components.
+
+• Firstly, create a Page component and write the following script:
+
+```js
+import React, { useEffect } from "react"
+import Container from "./Container" // ❗ Note that this new component do need to import the Container component
+
+function Page(props) {
+  useEffect(() => {
+    document.title = `${props.title} | OurApp` // wiil update the title
+    window.scrollTo(0, 0) // will scroll back up when loading the new page
+  }, [])
+
+  return <Container wide={props.wide}>{props.children}</Container> // will use the script from the Container component
+}
+
+export default Page
+```
+
+• Finally, replace in your app components the import of the Container component with the new Page component and replace the <Container> tags with <Page> tags. Do not forget to add a title attribute in the opening <Page> tag:
+
+```js
+import React, { useEffect } from "react"
+import Page from "./Page" // replaced the old Container component
+
+function About() {
+  return (
+    <Page title="About Us">
+      <h2>About Us</h2>
+      <p class="lead text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis dolorum labore quisquam vel id dicta fuga! Ducimus, quo. Dolore commodi aliquid error veritatis consequuntur, excepturi cumque fuga eum incidunt doloremque?</p>
+    </Page>
+  )
+}
+
+export default About
+```
+
+Now the page title will change when your navigates between pages.
