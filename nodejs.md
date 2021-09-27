@@ -44,7 +44,7 @@ console.log("File written")
 
 ## Read & Write files asynchronously
 
-• Use the asynchronous properties of FS:
+• Use the asynchronous properties of FS package:
 
 ```js
 fs.readFile("./txt/start.txt", "utf-8", (err, data1) => {
@@ -63,3 +63,26 @@ console.log("Will read file!")
 ```
 
 ✔😉 Note that the synchronous properties of FS were called `readFileSync` and `writeFileSync` and that the asynchronous ones were called `readFile` and `writeFile`.
+
+## Creating a simple web server
+
+• Import the http package
+
+```js
+const http = require("http")
+```
+
+• Create a server that listens to request
+
+```js
+const server = http.createServer((req, res) => {
+  console.log(req)
+  res.end("Hello from the server! ✌")
+})
+
+server.listen(8000, "127.0.0.1", () => {
+  console.log("Listening to request on port 8000")
+})
+```
+
+• run `node index.js` and open your localhost:8000
