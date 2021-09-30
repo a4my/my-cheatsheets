@@ -67,3 +67,15 @@ app.post('/', (req, res) => {
   res.send('You can post to this endpoint...')
 })
 ```
+
+### Handling POST requests in your project
+
+Express does not put the body data on the `req` parameter so we need to add a `middleware`. A middleware is a function that can modify the incoming request data:
+
+```js
+app.use(express.json()) // to add below your imports
+```
+
+In short the middleware adds the data from the body gets added to the `req` object.
+
+😉 Entire chapter about middlewares coming later.
