@@ -26,6 +26,7 @@ const port = 3000
 app.listen(port, () => {
   console.log(`App running on port ${port}...`)
 })
+// This block of code is usually added at the end of your script
 ```
 
 ### Send your first requests to the server
@@ -79,3 +80,41 @@ app.use(express.json()) // to add below your imports
 In short the middleware adds the data from the body gets added to the `req` object.
 
 😉 Entire chapter about middlewares coming later.
+
+### Updating data requests
+
+```js
+app.patch('/api/v1/tours/:id', (req, res) => {
+  if (req.params.id * 1 > tours.length) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'invalid ID'
+    })
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      tour: '<Updated tour here...>'
+    }
+  })
+})
+```
+
+### Deleting data requests
+
+```js
+app.delete('/api/v1/tours/:id', (req, res) => {
+  if (req.params.id * 1 > tours.length) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'invalid ID'
+    })
+  }
+
+  res.status(204).json({
+    status: 'success',
+    data: null
+  })
+})
+```
