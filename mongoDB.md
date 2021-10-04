@@ -42,3 +42,46 @@ In order to launch the server, open a second window in your command line and run
 • Run `shows collections` to see all the collections of a database
 
 • Use `quit()` to quit the mongo shell.
+
+# Creating documents
+
+• Use `db.<collection-name>.insertMany()` to insert a new document into the database's collection. You can insert a JSON object like the example below:
+
+```js
+db.tours.insertMany([
+  { name: 'The Sea Explorer', price: 497, rating: 4.8 },
+  { name: 'The Snow Adventurer', price: 997, ratings: 4.9, difficulty: 'easy' }
+])
+```
+
+> > Run `db.<collection-name>.find()` to show the coolection.
+
+# Querying (reading) documents
+
+• To filter your search in the database, `db.<collection-name>.find({ <property> : <value> })`
+
+For example: db.tours.find({ name : "The Snow Adventurer"})
+
+> > Only the document containing the filter will be read
+
+❗ Note that you still need to use {} when you filter an object
+
+• You can also filter using criterias:
+
+`db.tours.find({ price: {$lte: 500} })`
+
+> > This will return every tours in the database that costs less than or equal to £500.
+
+`db.tours.find({ price: {$lt: 500}, ratings: {$gte: 4.8} })`
+
+> > This will return every tours in the database that strictly cost less than £500 AND for which the ratings is greater than or equal to 4.8.
+
+`db.tours.find({ $or: [{price: {$lt: 500}}, rating: {$gte: 4.8}]})`
+
+> > This will filter your search filtering with one condition OR the other one.
+
+• Add `{name: 1}` to your search to only return the name criteria of the object:
+
+`db.tours.find({ $or: [{price: {$lt: 500}}, rating: {$gte: 4.8}]}, { name: 1 })`
+
+> > "\_id" : ObjectId("615af0c9c33afc263051b06e"), "name" : "The Sea Explorer"
