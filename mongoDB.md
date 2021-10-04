@@ -85,3 +85,23 @@ For example: db.tours.find({ name : "The Snow Adventurer"})
 `db.tours.find({ $or: [{price: {$lt: 500}}, rating: {$gte: 4.8}]}, { name: 1 })`
 
 > > "\_id" : ObjectId("615af0c9c33afc263051b06e"), "name" : "The Sea Explorer"
+
+# Updating documents
+
+• Run `db.<collection-name>.updateOne({ name: <name>}, {$set: {property; <new-value>}})` to update a document:
+
+```js
+db.tours.updateOne({ name: 'The Snow Adventurer' }, { $set: { price: 597 } })
+```
+
+This command will return the following response:
+
+```js
+    { "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+```
+
+And if you check again your database's collection, you'll see that the document has been updated:
+
+```js
+    { "_id" : ObjectId("615af0c9c33afc263051b06f"), "name" : "The Snow Adventurer", "price" : 597, "rating" : 4.9, "difficulty" : "easy" }
+```
