@@ -105,3 +105,17 @@ And if you check again your database's collection, you'll see that the document 
 ```js
     { "_id" : ObjectId("615af0c9c33afc263051b06f"), "name" : "The Snow Adventurer", "price" : 597, "rating" : 4.9, "difficulty" : "easy" }
 ```
+
+# Deleting documents
+
+• `db.<collection-name>.deleteMany({ })` will delete the whole collection
+
+• `db.<collection-name>.deleteMany({ })` will delete documents that match the filters condition:
+
+```js
+db.tours.deleteMany({ rating: { $lt: 4.8 } })
+```
+
+> > This will delete any tour that have a rating less than4.8
+
+• `db.<collection-name>.deleteOne({ name: "<name>" })` will delete the document targetted by the name property
