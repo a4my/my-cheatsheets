@@ -143,3 +143,18 @@ db.tours.deleteMany({ rating: { $lt: 4.8 } })
 • If Compass has not detected itself that you have a connection string copied in your clipboard, click on `Connect to` and paste the connection string and add your password inside the string.
 
 > > You will then land on your project's database dashboard
+
+• Click on `Create a database`, choose a name for your database AND a name for your first collection.
+
+• Click on your newly created database then on your newly reated collection and click on `Add data` to insert a new document.
+
+### Connecting your database from anywhere if ou work on a different computer (OPTIONAL)
+
+• Open MongoDB Atlas and on your cluster's list, click on `Network Access`
+• Then on `Add IP Address` and choose `Allow Acces From Anywhere `
+
+### Connect the database to your Mongo Shell
+
+• Open MongoDB Atlas and on your cluster's list, click on `Connect`
+• Click on `Connect using MongoDB Shell` and choose the `I already have MongoDB Shell` option
+• Copy the `connection string` and open MongoDB Compass on your desktop.
