@@ -193,3 +193,26 @@ const DB = process.env.DATABASE.replace(
   process.env.DATABASE_PASSWORD
 )
 ```
+
+### Creating models and shemas with Mongoose
+
+Mongoose allows us to create models and schemas to insert
+
+```js
+const tourSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, 'A tour must have a name']
+  },
+  rating: {
+    type: Number,
+    default: 4.5
+  },
+  price: {
+    type: Number,
+    required: [true, 'A tour must have a price']
+  }
+})
+
+const Tour = mongoose.model('Tour', tourSchema)
+```
