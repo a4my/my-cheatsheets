@@ -24,7 +24,7 @@ In order to launch the server, open a second window in your command line and run
 
 • To create a new database, run `use <name-of-collection>` ie (use natours-test)
 
-• The server will switch to the newly created dataase and return `switched to db <name-of-collection>`
+• The server will switch to the newly created database and return `switched to db <name-of-collection>`
 
 • To insert a document in the database's collection, run `db.tours.insertOne({name: "The Forest Hiker", price: 297, rating: 4.7})`.
 
@@ -54,7 +54,7 @@ db.tours.insertMany([
 ])
 ```
 
-> > Run `db.<collection-name>.find()` to show the coolection.
+> > Run `db.<collection-name>.find()` to show the collection.
 
 # Querying (reading) documents
 
@@ -119,3 +119,27 @@ db.tours.deleteMany({ rating: { $lt: 4.8 } })
 > > This will delete any tour that have a rating less than4.8
 
 • `db.<collection-name>.deleteOne({ name: "<name>" })` will delete the document targetted by the name property
+
+# Creating a Hosted Database for your project
+
+• Open MongoDB Atlas
+• Click on `New Project`
+• Give it a name (<project-app>)
+• Click again on `create project` in the permissions window
+• Then click on `Build a database`
+• Choose the free server option and click on `Create Cluster`
+
+# Connecting your Hosted Database to your project
+
+• On your `clusters` list, click on `connect`
+• Choose `Add Your Current IP Address`
+• Create a database user by picking up a username and a password
+✔ You can already copy and paste your password to the config.env file of your project 😉
+• Click on `Create Database User` then on `Choose connection method`
+
+• Click on `Connect using MongoDB Compass` and choose the `I already have MongoDB Compass` option
+• Copy the `connection string` and open MongoDB Compass on your desktop.
+
+• If Compass has not detected itself that you have a connection string copied in your clipboard, click on `Connect to` and paste the connection string and add your password inside the string.
+
+> > You will then land on your project's database dashboard
