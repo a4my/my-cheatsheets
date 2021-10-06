@@ -216,3 +216,23 @@ const tourSchema = new mongoose.Schema({
 
 const Tour = mongoose.model('Tour', tourSchema)
 ```
+
+Using the newly created schema you can now add documents using that "constructor":
+
+```js
+const testTour = new Tour({
+  name: 'The Park Camper',
+  price: 997
+})
+
+testTour
+  .save()
+  .then(doc => {
+    console.log(doc)
+  })
+  .catch(err => {
+    console.log('ERROR 💥:', err)
+  })
+```
+
+If you save your script and check your MongoDB Atlas or Compass, you'll see that the document has been added to your database's collection.
