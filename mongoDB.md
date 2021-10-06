@@ -157,4 +157,39 @@ db.tours.deleteMany({ rating: { $lt: 4.8 } })
 
 • Open MongoDB Atlas and on your cluster's list, click on `Connect`
 • Click on `Connect using MongoDB Shell` and choose the `I already have MongoDB Shell` option
-• Copy the `connection string` and open MongoDB Compass on your desktop.
+• Copy the `connection string` and paste it in your command line.
+
+### Connect the database to your Express app
+
+• Open MongoDB Atlas and on your cluster's list, click on `Connect`
+• Click on `Connect your application`, make sure `nodejs` is selected and copy the `connection string`
+• Copy the `connection string` in your config.env file:
+
+```js
+  DATABASE= mongodb+srv://alex:<PASSWORD>@cluster0.8x82c.mongodb.net/natours?retryWrites=true&w=majority
+```
+
+• run `npm i mongoose`
+• In your `server.js` file import Mongoose at the top of your script and connect Mongoose as below:
+
+```js
+const mongoose = require('mongoose')
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  })
+  .then(con => {
+    console.log('DB connection succesful')
+  })
+```
+
+❗ Make sure you first declare a variable that replaces your password in the connection string with your actual password saved in the ENV file:
+
+```js
+const DB = process.env.DATABASE.replace(
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD
+)
+```
