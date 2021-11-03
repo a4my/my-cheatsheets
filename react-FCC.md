@@ -78,21 +78,21 @@ const JSX = (
 )
 ```
 
-### Self-clsing tags
+### Self-closing tags
 
 In JSX, the rules are a little different. Any JSX element can be written with a self-closing tag, and every element must be closed.
 
-The line-break tag, for example, must always be written as <br /> in order to be valid JSX that can be transpiled. A <div>, on the other hand, can be written as <div /> or <div></div>. The difference is that in the first syntax version there is no way to include anything in the <div />.
+The line-break tag, for example, must always be written as <br /> in order to be valid JSX that can be transpiled. A `<div>`, on the other hand, can be written as `<div />` or `<div></div>`. The difference is that in the first syntax version there is no way to include anything in the `<div />`.
 
 # React components
 
 ### Create a Stateless Functional Component
 
-There are two ways to create a React component. The first way is to use a JavaScript function. Defining a component in this way creates a stateless functional component. cThere are two ways to create a React component. The first way is to use a JavaScript function. Defining a component in this way creates a stateless functional component.
+There are two ways to create a React component. The first way is to use a JavaScript function. Defining a component in this way creates a stateless functional component. There are two ways to create a React component. The first way is to use a JavaScript function. Defining a component in this way creates a stateless functional component.
 
 To create a component with a function, you simply write a JavaScript function that returns either JSX or null.
 
-❗ One important thing to note is that React requires your function name to begin with a capital letter.c
+❗ One important thing to note is that React requires your function name to begin with a capital letter.
 
 ```js
 const DemoComponent = function () {
@@ -360,7 +360,7 @@ const ShoppingCart = props => {
     <div>
       <h1>Shopping Cart Component</h1>
     </div>
-  )
+  )s
 }
 // Change code below this line
 
@@ -386,6 +386,77 @@ class ShoppingCart extends React.Component {
   }
   render() {
     return <Items quantity={100} />
+  }
+}
+```
+
+### Use PropTypes to Define the Props You Expect
+
+React provides useful type-checking features to verify that components receive props of the correct type. For example, your application makes an API call to retrieve data that you expect to be in an array, which is then passed to a component as a prop. You can set propTypes on your component to require the data to be of type array. This will throw a useful warning when the data is of any other type.
+
+It's considered a best practice to set propTypes when you know the type of a prop ahead of time. You can define a propTypes property for a component in the same way you defined defaultProps. Doing this will check that props of a given key are present with a given type. Here's an example to require the type function for a prop called handleClick:
+
+```js
+MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }
+```
+
+In the example above, the PropTypes.func part checks that handleClick is a function. Adding isRequired tells React that handleClick is a required property for that component. You will see a warning if that prop isn't provided. Also notice that func represents function. Among the seven JavaScript primitive types, function and boolean (written as bool) are the only two that use unusual spelling. In addition to the primitive types, there are other types available. For example, you can check that a prop is a React element.
+
+❗ As of React v15.5.0, PropTypes is imported independently from React, like this: import PropTypes from 'prop-types'.
+
+```js
+const Items = props => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+}
+
+Items.propTypes = { quantity: PropTypes.number.isRequired }
+
+Items.defaultProps = {
+  quantity: 0
+}
+
+class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return <Items />
+  }
+}
+```
+
+### Access Props Using this.props
+
+The above covered the basic ways to pass props to child components. But what if the child component that you're passing a prop to is an ES6 class component, rather than a stateless functional component? The ES6 class component uses a slightly different convention to access props.
+
+Anytime you refer to a class component within itself, you use the this keyword. To access props within a class component, you preface the code that you use to access it with this. For example, if an ES6 class component has a prop called data, you write {this.props.data} in JSX.
+
+```js
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <div>
+        <Welcome name="Mark" />
+      </div>
+    )
+  }
+}
+
+class Welcome extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <div>
+        <p>
+          Hello, <strong>{this.props.name}</strong>!
+        </p>
+      </div>
+    )
   }
 }
 ```
