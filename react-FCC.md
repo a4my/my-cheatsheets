@@ -543,3 +543,161 @@ class MyComponent extends React.Component {
   }
 }
 ```
+
+# State
+
+The above covered component `state` and how to initialize `state` in the constructor. There is also a way to change the component's `state`. React provides a method for updating component state called `setState`. You call the setState method within your component class like so: `this.setState()`, passing in an object with key-value pairs. The keys are your state properties and the values are the updated state data. For instance, if we were storing a `username` in state and wanted to update it, it would look like this:
+
+```js
+this.setState({
+  username: 'Lewis'
+})
+```
+
+React expects you to never modify state directly, instead always use this.setState() when state changes occur. Also, you should note that React may batch multiple state updates in order to improve performance. What this means is that state updates through the setState method can be asynchronous. There is an alternative syntax for the setState method which provides a way around this problem. This is rarely needed but it's good to keep it in mind!
+
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: 'Initial State'
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
+  handleClick() {
+    this.setState({
+      name: 'React Rocks!'
+    })
+  }
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleClick}>Click Me</button>
+        <h1>{this.state.name}</h1>
+      </div>
+    )
+  }
+}
+```
+
+### Bind 'this' to a Class Method
+
+In addition to setting and updating `state`, you can also define methods for your component class. A class method typically needs to use the `this` keyword so it can access properties on the class (such as `state` and `props`) inside the scope of the method. There are a few ways to allow your class methods to access `this`.
+
+One common way is to explicitly bind `this` in the constructor so `this` becomes bound to the class methods when the component is initialized. You may have noticed the last challenge used `this.handleClick = this.handleClick.bind(this)` for its `handleClick` method in the constructor. Then, when you call a function like `this.setState()` within your class method, `this` refers to the class and will not be `undefined`.
+
+### Use State to Toggle an Element
+
+Sometimes you might need to know the previous state when updating the state. However, state updates may be asynchronous - this means React may batch multiple `setState()` calls into a single update. This means you can't rely on the previous value of `this.state` or `this.props` when calculating the next value. So, you should not use code like this:
+
+```js
+// ❌⛔🚫⭕
+this.setState({
+  counter: this.state.counter + this.props.increment
+})
+```
+
+Instead, you should pass setState a function that allows you to access state and props. Using a function with setState guarantees you are working with the most current values of state and props. This means that the above should be rewritten as:
+
+```js
+this.setState((state, props) => ({
+  counter: state.counter + props.increment
+}))
+```
+
+You can also use a form without props if you need only the state:
+
+```js
+this.setState(state => ({
+  counter: state.counter + 1
+}))
+```
+
+❕ Note that you have to wrap the object literal in parentheses, otherwise JavaScript thinks it's a block of code.
+
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      visibility: false
+    }
+    this.toggleVisibility = this.toggleVisibility.bind(this)
+  }
+  toggleVisibility() {
+    this.setState(state => {
+      if (state.visibility === true) {
+        return { visibility: false }
+      } else {
+        return { visibility: true }
+      }
+    })
+  }
+  render() {
+    if (this.state.visibility) {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+          <h1>Now you see me!</h1>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+        </div>
+      )
+    }
+  }
+}
+```
+
+### Write a Simple Counter
+
+You can design a more complex stateful component by combining the concepts covered so far. These include initializing state, writing methods that set state, and assigning click handlers to trigger these methods.
+
+```js
+class Counter extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      count: 0
+    }
+    this.increment = this.increment.bind(this)
+    this.decrement = this.decrement.bind(this)
+    this.reset = this.reset.bind(this)
+  }
+  increment() {
+    this.setState(state => ({
+      count: state.count + 1
+    }))
+  }
+  decrement() {
+    this.setState(state => ({
+      count: state.count - 1
+    }))
+  }
+  reset() {
+    this.setState({
+      count: 0
+    })
+  }
+  render() {
+    return (
+      <div>
+        <button className="inc" onClick={this.increment}>
+          Increment!
+        </button>
+        <button className="dec" onClick={this.decrement}>
+          Decrement!
+        </button>
+        <button className="reset" onClick={this.reset}>
+          Reset
+        </button>
+        <h1>Current Count: {this.state.count}</h1>
+      </div>
+    )
+  }
+}
+```
