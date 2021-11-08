@@ -392,17 +392,17 @@ class ShoppingCart extends React.Component {
 
 ### Use PropTypes to Define the Props You Expect
 
-React provides useful type-checking features to verify that components receive props of the correct type. For example, your application makes an API call to retrieve data that you expect to be in an array, which is then passed to a component as a prop. You can set propTypes on your component to require the data to be of type array. This will throw a useful warning when the data is of any other type.
+React provides useful type-checking features to verify that components receive props of the correct type. For example, your application makes an API call to retrieve data that you expect to be in an array, which is then passed to a component as a prop. You can set `propTypes` on your component to require the data to be of type array. This will throw a useful warning when the data is of any other type.
 
-It's considered a best practice to set propTypes when you know the type of a prop ahead of time. You can define a propTypes property for a component in the same way you defined defaultProps. Doing this will check that props of a given key are present with a given type. Here's an example to require the type function for a prop called handleClick:
+It's considered a best practice to set `propTypes` when you know the type of a prop ahead of time. You can define a `propTypes` property for a component in the same way you defined `defaultProps`. Doing this will check that `props` of a given key are present with a given type. Here's an example to require the type function for a prop called `handleClick`:
 
 ```js
 MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }
 ```
 
-In the example above, the PropTypes.func part checks that handleClick is a function. Adding isRequired tells React that handleClick is a required property for that component. You will see a warning if that prop isn't provided. Also notice that func represents function. Among the seven JavaScript primitive types, function and boolean (written as bool) are the only two that use unusual spelling. In addition to the primitive types, there are other types available. For example, you can check that a prop is a React element.
+In the example above, the `PropTypes.func` part checks that `handleClick` is a function. Adding isRequired tells React that `handleClick` is a required property for that component. You will see a warning if that prop isn't provided. Also notice that func represents function. Among the seven JavaScript primitive types, function and boolean (written as `bool`) are the only two that use unusual spelling. In addition to the primitive types, there are other types available. For example, you can check that a prop is a React element.
 
-❗ As of React v15.5.0, PropTypes is imported independently from React, like this: import PropTypes from 'prop-types'.
+❗ As of React v15.5.0, PropTypes is imported independently from React, like this: `import PropTypes from 'prop-types'`.
 
 ```js
 const Items = props => {
@@ -429,7 +429,7 @@ class ShoppingCart extends React.Component {
 
 The above covered the basic ways to pass props to child components. But what if the child component that you're passing a prop to is an ES6 class component, rather than a stateless functional component? The ES6 class component uses a slightly different convention to access props.
 
-Anytime you refer to a class component within itself, you use the this keyword. To access props within a class component, you preface the code that you use to access it with this. For example, if an ES6 class component has a prop called data, you write {this.props.data} in JSX.
+Anytime you refer to a class component within itself, you use the this keyword. To access props within a class component, you preface the code that you use to access it with this. For example, if an ES6 class component has a prop called data, you write `{this.props.data}` in JSX.
 
 ```js
 class App extends React.Component {
@@ -465,15 +465,15 @@ class Welcome extends React.Component {
 
 ### Create a Stateful Component
 
-One of the most important topics in React is state. State consists of any data your application needs to know about, that can change over time. You want your apps to respond to state changes and present an updated UI when necessary. React offers a nice solution for the state management of modern web applications.
+One of the most important topics in React is `state`. `State` consists of any data your application needs to know about, that can change over time. You want your apps to respond to `state` changes and present an updated UI when necessary. React offers a nice solution for the `state` management of modern web applications.
 
-You create state in a React component by declaring a state property on the component class in its constructor. This initializes the component with state when it is created. The state property must be set to a JavaScript object. Declaring it looks like this:
+You create `state` in a React component by declaring a `state` property on the component class in its constructor. This initializes the component with `state` when it is created. The `state` property must be set to a JavaScript object. Declaring it looks like this:
 
 ```js
 this.state = {}
 ```
 
-You have access to the state object throughout the life of your component. You can update it, render it in your UI, and pass it as props to child components. The state object can be as complex or as simple as you need it to be. Note that you must create a class component by extending React.Component in order to create state like this.
+You have access to the state object throughout the life of your component. You can update it, render it in your UI, and pass it as props to child components. The state object can be as complex or as simple as you need it to be. Note that you must create a class component by extending `React.Component` in order to create state like this.
 
 ```js
 class StatefulComponent extends React.Component {
@@ -495,7 +495,7 @@ class StatefulComponent extends React.Component {
 
 ### Render State in the User Interface
 
-Once you define a component's initial state, you can display any part of it in the UI that is rendered. If a component is stateful, it will always have access to the data in state in its render() method. You can access the data with this.state.
+Once you define a component's initial state, you can display any part of it in the UI that is rendered. If a component is stateful, it will always have access to the data in state in its `render()` method. You can access the data with this.state.
 
 If you want to access a state value within the return of the render method, you have to enclose the value in curly braces.
 
@@ -523,7 +523,7 @@ class MyComponent extends React.Component {
 
 ### Render State in the User Interface Another Way
 
-There is another way to access state in a component. In the render() method, before the return statement, you can write JavaScript directly. For example, you could declare functions, access data from state or props, perform computations on this data, and so on. Then, you can assign any data to variables, which you have access to in the return statement.
+There is another way to access state in a component. In the `render()` method, before the return statement, you can write JavaScript directly. For example, you could declare functions, access data from state or props, perform computations on this data, and so on. Then, you can assign any data to variables, which you have access to in the return statement.
 
 ```js
 class MyComponent extends React.Component {
@@ -554,7 +554,7 @@ this.setState({
 })
 ```
 
-React expects you to never modify state directly, instead always use this.setState() when state changes occur. Also, you should note that React may batch multiple state updates in order to improve performance. What this means is that state updates through the setState method can be asynchronous. There is an alternative syntax for the setState method which provides a way around this problem. This is rarely needed but it's good to keep it in mind!
+React expects you to never modify state directly, instead always use `this.setState()` when state changes occur. Also, you should note that React may batch multiple state updates in order to improve performance. What this means is that state updates through the `setState` method can be asynchronous. There is an alternative syntax for the `setState` method which provides a way around this problem. This is rarely needed but it's good to keep it in mind!
 
 ```js
 class MyComponent extends React.Component {
