@@ -731,3 +731,84 @@ class ControlledInput extends React.Component {
   }
 }
 ```
+
+### Create a Controlled Form
+
+The above showed that React can control the internal state for certain elements like `input` and `textarea`, which makes them controlled components. This applies to other form elements as well, including the regular HTML `form` element.
+
+```js
+class MyForm extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      input: '',
+      submit: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  handleChange(event) {
+    this.setState({
+      input: event.target.value
+    })
+  }
+  handleSubmit(event) {
+    event.preventDefault()
+    this.setState({
+      submit: this.state.input
+    })
+  }
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <input value={this.state.input} onChange={this.handleChange} />
+          <button type="submit">Submit!</button>
+        </form>
+        <h1>{this.state.submit}</h1>
+      </div>
+    )
+  }
+}
+```
+
+### Pass State as Props to Child Components
+
+You saw a lot of examples that passed props to child JSX elements and child React components in previous challenges. You may be wondering where those props come from. A common pattern is to have a stateful component containing the `state` important to your app, that then renders child components. You want these components to have access to some pieces of that state, which are passed in as props.
+
+For example, maybe you have an `App` component that renders a `Navbar`, among other components. In your `App`, you have `state` that contains a lot of user information, but the `Navbar` only needs access to the user's username so it can display it. You pass that piece of `state` to the `Navbar` component as a prop.
+
+This pattern illustrates some important paradigms in React. The first is unidirectional data flow. State flows in one direction down the tree of your application's components, from the stateful parent component to child components. The child components only receive the state data they need. The second is that complex stateful apps can be broken down into just a few, or maybe a single, stateful component. The rest of your components simply receive state from the parent as props, and render a UI from that state. It begins to create a separation where state management is handled in one part of code and UI rendering in another. This principle of separating state logic from UI logic is one of React's key principles. When it's used correctly, it makes the design of complex, stateful applications much easier to manage.
+
+```js
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: 'CamperBot'
+    }
+  }
+  render() {
+    return (
+      <div>
+        <Navbar name={this.state.name} />
+      </div>
+    )
+  }
+}
+
+class Navbar extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <div>
+        <h1>Hello, my name is: {this.props.name}</h1>
+      </div>
+    )
+  }
+}
+```
+
+### Pass a Callback as Props
