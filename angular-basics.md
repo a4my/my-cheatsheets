@@ -22,6 +22,72 @@ Angular uses concepts such as MVC, "modules", "services" or "observables" and ng
 `ng --version` will show details about the Angular version installed on your computer.
 `ng new appname` will create an Angular app called "appname"
 `ng serve` will run the live server
-`ng generate component components/Todos` will create a new component in a folder called Todos inside a folder called component
 
-##
+## ngIf and ngFor directives
+
+```js
+@component({
+  selector: 'listItems',
+  template: `
+        <div *ngIf="listItems.length > 0 ">
+            <h1>List of items</h1>
+        </div>    
+        `
+})
+export class ListItemsComponent {
+  listItems = ['item1', 'item2', 'item3']
+}
+```
+
+```js
+@component({
+  selector: 'listItems',
+  template: `
+        <div *ngFor="let item of listItems">
+            <h1>{{ item }}</h1>
+        </div>    
+        `
+})
+export class ListItemsComponent {
+  listItems = ['item1', 'item2', 'item3']
+}
+```
+
+## Angular CLI
+
+`ng generate component components/Todos` or `ng g c components/Todos`will create a new component in a folder called Todos inside a folder called component
+`ng generate pipe <name>` will create a custom pipe
+
+## Pipes
+
+ex:
+
+```js
+@Pipe({
+  name: 'deleteSpace'
+})
+export class DeleteSpacePipe implements PipeTransform {
+  transorm(value: string) {
+    return value.replace(' ', '')
+  }
+}
+```
+
+⚠️ Add the pipe into the declarations in `app.module.ts` :
+
+```js
+  @NgModule({
+    declarations: [
+      AppComponent,
+      DeleteSpacePipe
+    ]
+  })
+```
+
+then apply the pipe in the HTML:
+
+```html
+<td>{{ books.category | deleteSpace}}</td>
+```
+
+==> 'Big data' will become 'Bigdata'
